@@ -169,3 +169,23 @@ with tab4:
                 st.markdown(msg["content"])
                 
     # ... (后面的聊天输入框代码不用改) ...
+
+    # 处理聊天输入 (保留了之前的高级流式打字机效果)
+    if user_input := st.chat_input("输入关于地协的问题..."):
+        st.session_state.messages.append({"role": "user", "content": user_input})
+        with st.chat_message("user"):
+            st.markdown(user_input)
+
+        with st.chat_message("assistant"):
+            stream_response = api_client.generate_stream_response(st.session_state.messages)
+            
+            if isinstance(stream_response, str):
+                st.error(f"网络异常: {stream_response}")
+            else:
+                def stream_generator():
+                    for chunk in stream_response:
+                        if chunk.choices[0].delta.content:
+                            yield chunk.choices[0].delta.content
+                
+                full_answer = st.write_stream(stream_generator())
+                st.session_state.messages.append({"role": "assistant", "content": full_answer})
