@@ -203,13 +203,13 @@ with tab3:
 
                 img_path = art.get("url_image")
 
-                if img_path and os.path.exists(img_path):
-                    st.image(
-                        img_path,
-                        use_container_width=True
-                    )
-                else:
-                     st.warning(f"图片不存在：{img_path}")
+            if img_path and os.path.exists(img_path):
+                st.image(
+                    img_path,
+                    use_container_width=True
+                )
+            else:
+                st.warning(f"图片不存在：{img_path}")
 
             # 杂志风卡片信息
             st.markdown(f"""
