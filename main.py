@@ -123,59 +123,49 @@ with tab1:
 
 # ----------------- 标签页 2：活动通知 -----------------
 with tab2:
-    st.header("🔥 最新活动")
+    st.header("最新活动")
     # 动态渲染字典里的活动数据
     for act in ACTIVITY_DATA:
         with st.expander(f"{act['title']} (状态: {act['status']})"):
-            st.write(f"**⏰ 时间**：{act['date']}")
-            st.write(f"**📍 详情**：{act['desc']}")
+            st.write(f"**时间**：{act['date']}")
+            st.write(f"**详情**：{act['desc']}")
             if act['status'] == "报名中":
                 st.button("🔗 点击前往报名表单", key=act['title']) 
 
 # ----------------- 标签页 3：相关推文 (你的新需求) -----------------
 with tab3:
-    st.header("📚 往期精选推文")
+    st.header("往期精选推文")
     # 我在这里给你加了一个外边框 (border=True)，让推文看起来像一张张卡片，更美观！
     for art in ARTICLE_DATA:
         with st.container(border=True):
             st.markdown(f"#### {art['title']}")
-            st.caption(f"✍️ 作者: {art['author']}")
+            st.caption(f"作者: {art['author']}")
             st.write(art['summary'])
-            st.link_button("📖 阅读原文", url=art['url'])
+            st.link_button("阅读原文", url=art['url'])
 
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
     st.header("🤖 NJUGA 智能百事通")
-    st.markdown("你可以问我：*这周末有活动吗？* 或者 *你们怎么教 GIS？*")
+    st.markdown("你可以问我：*这周末有活动吗？* 或者 *九州风物的推文有链接吗？*")
     
-    # 注入知识库作为 System Prompt
+    # 1. 仅仅初始化聊天记录的外壳和第一句问候
     if "messages" not in st.session_state:
-        knowledge_base = get_association_knowledge_base()
-        st.session_state.messages = [{"role": "system", "content": knowledge_base}]
+        st.session_state.messages = []
         st.session_state.messages.append({"role": "assistant", "content": "你好！我是南大地协的 AI 小助手，关于协会的任何问题都可以问我哦！🌍"})
 
-    # 渲染聊天记录
+    # 2. 核心魔法：每次用户在网页上做任何操作，都强制拉取最新的知识库！
+    # 这样以后你只要在后台加了新文章，AI 会瞬间学会，绝对不会再用旧记忆瞎编。
+    latest_knowledge = get_association_knowledge_base()
+    
+    # 先把旧的系统提示词（如果有的话）洗掉
+    st.session_state.messages = [msg for msg in st.session_state.messages if msg["role"] != "system"]
+    # 把最新鲜的知识库强行塞到对话的最前面（第一位）
+    st.session_state.messages.insert(0, {"role": "system", "content": latest_knowledge})
+
+    # 渲染聊天记录 (下面的代码保持不变)
     for msg in st.session_state.messages:
         if msg["role"] != "system":
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
-
-    # 处理聊天输入 (保留了之前的高级流式打字机效果)
-    if user_input := st.chat_input("输入关于地协的问题..."):
-        st.session_state.messages.append({"role": "user", "content": user_input})
-        with st.chat_message("user"):
-            st.markdown(user_input)
-
-        with st.chat_message("assistant"):
-            stream_response = api_client.generate_stream_response(st.session_state.messages)
-            
-            if isinstance(stream_response, str):
-                st.error(f"网络异常: {stream_response}")
-            else:
-                def stream_generator():
-                    for chunk in stream_response:
-                        if chunk.choices[0].delta.content:
-                            yield chunk.choices[0].delta.content
                 
-                full_answer = st.write_stream(stream_generator())
-                st.session_state.messages.append({"role": "assistant", "content": full_answer})
+    # ... (后面的聊天输入框代码不用改) ...
