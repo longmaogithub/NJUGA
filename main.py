@@ -264,7 +264,6 @@ margin-bottom: 30px;
 ">
 <h1 style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 10px;">南京大学地理协会</h1>
 <h3 style="font-weight: 400; color: #f5f5f7;">地理无界 · 世界相连</h3>
-<p style="font-size: 18px; color: #d2d2d7; margin-top: 20px;">丈量祖国大地，普及地理科学</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -339,29 +338,29 @@ with tab1:
             use_container_width=True
         )
 
-        st.caption("玄武湖")
+        st.caption("温州")
 
         st.image(
-            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "images/午朝门.jpg",
             use_container_width=True
         )
 
-        st.caption("钟山")
+        st.caption("午朝门")
 
     with g2:
         st.image(
-            "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+            "images/星光集市.jpg",
             use_container_width=True
         )
 
-        st.caption("浦口铁路")
+        st.caption("星光集市")
 
         st.image(
             "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
             use_container_width=True
         )
 
-        st.caption("雨花台")
+        st.caption("测试图片")
 
     with g3:
         st.image(
@@ -369,14 +368,14 @@ with tab1:
             use_container_width=True
         )
 
-        st.caption("苏州")
+        st.caption("测试图片")
 
         st.image(
             "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
             use_container_width=True
         )
 
-        st.caption("宁夏")
+        st.caption("测试图片")
 
     st.divider()
 
