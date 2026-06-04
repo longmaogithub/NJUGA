@@ -328,10 +328,122 @@ with tab2:
 with tab3:
 
     st.markdown("""
-    <div class="mag-hero">
-        <h1>地理无界 Magazine</h1>
+    <style>
+
+    .apple-hero{
+        padding:80px 50px;
+        text-align:center;
+        border-radius:35px;
+        margin-bottom:40px;
+
+        background:
+        linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+        );
+
+        color:white;
+    }
+
+    .apple-hero h1{
+        font-size:64px;
+        font-weight:900;
+        margin-bottom:15px;
+    }
+
+    .apple-hero p{
+        font-size:22px;
+        opacity:.85;
+    }
+
+    .article-card{
+        background:white;
+        border-radius:30px;
+        overflow:hidden;
+
+        box-shadow:
+        0 10px 40px rgba(0,0,0,.08);
+
+        transition:.4s;
+
+        margin-bottom:40px;
+    }
+
+    .article-card:hover{
+        transform:
+        translateY(-10px);
+
+        box-shadow:
+        0 25px 60px rgba(0,0,0,.15);
+    }
+
+    .article-img{
+        width:100%;
+        height:350px;
+        object-fit:cover;
+    }
+
+    .article-body{
+        padding:28px;
+    }
+
+    .article-date{
+        color:#94a3b8;
+        font-size:14px;
+    }
+
+    .article-title{
+        font-size:32px;
+        font-weight:800;
+        margin-top:10px;
+        color:#0f172a;
+        line-height:1.3;
+    }
+
+    .article-author{
+        margin-top:15px;
+        color:#475569;
+        font-weight:600;
+    }
+
+    .article-summary{
+        margin-top:18px;
+        color:#334155;
+        line-height:1.9;
+    }
+
+    .article-btn{
+        display:inline-block;
+
+        margin-top:25px;
+
+        padding:
+        12px 25px;
+
+        border-radius:999px;
+
+        background:
+        linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+        );
+
+        color:white !important;
+        text-decoration:none !important;
+        font-weight:700;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="apple-hero">
+        <h1>Geography Magazine</h1>
         <p>
-        Geography · Culture · Landscape · Civilization
+        用空间理解时间 · 用土地解读文明
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -341,14 +453,9 @@ with tab3:
         list(ARTICLE_DATA.keys())
     )
 
-    st.markdown(
-        f'<div class="mag-category">{category}</div>',
-        unsafe_allow_html=True
-    )
-
     articles = ARTICLE_DATA[category]
 
-    col1, col2 = st.columns(2, gap="large")
+    col1, col2 = st.columns(2)
 
     for i, art in enumerate(articles):
 
@@ -356,45 +463,53 @@ with tab3:
 
         with target:
 
-            if os.path.exists(art["cover"]):
+            image_path = art["cover"]
 
-                st.image(
-                    art["cover"],
-                    use_container_width=True
-                )
+            if os.path.exists(image_path):
 
-            st.markdown(f"""
-            <div class="mag-card">
+                import base64
 
-                <div class="mag-content">
+                with open(image_path, "rb") as f:
+                    img_base64 = base64.b64encode(
+                        f.read()
+                    ).decode()
 
-                    <div class="mag-date">
-                    {art["date"]}
+                st.markdown(f"""
+                <div class="article-card">
+
+                    <img
+                    class="article-img"
+                    src="data:image/jpeg;base64,{img_base64}">
+
+                    <div class="article-body">
+
+                        <div class="article-date">
+                        {art["date"]}
+                        </div>
+
+                        <div class="article-title">
+                        {art["title"]}
+                        </div>
+
+                        <div class="article-author">
+                        作者 · {art["author"]}
+                        </div>
+
+                        <div class="article-summary">
+                        {art["summary"]}
+                        </div>
+
+                        <a
+                        href="{art["url"]}"
+                        target="_blank"
+                        class="article-btn">
+                        阅读全文 →
+                        </a>
+
                     </div>
-
-                    <div class="mag-title">
-                    {art["title"]}
-                    </div>
-
-                    <div class="mag-author">
-                    作者 · {art["author"]}
-                    </div>
-
-                    <div class="mag-summary">
-                    {art["summary"]}
-                    </div>
-
-                    <a
-                    href="{art["url"]}"
-                    target="_blank"
-                    class="mag-btn">
-                    阅读全文 →
-                    </a>
 
                 </div>
-
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
     st.header("NJUGA 智能百事通")
