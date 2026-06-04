@@ -5,10 +5,10 @@ from zhipu_api import ReviewAssistantAPI
 from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 
 # ==========================================
-# 1. 页面配置 (必须放在第一行)
+# 1. 页面配置 
 # ==========================================
 st.set_page_config(
-    page_title="南京大学地理协会 (NJUGA)",
+    page_title="南京大学地理协会",
     page_icon="🌍",
     layout="wide"
 )
@@ -25,19 +25,20 @@ except Exception:
     ZHIPU_API_KEY = os.getenv("MY_ZHIPU_KEY")
 
 if not ZHIPU_API_KEY:
-    st.error("🚨 致命错误：找不到 API Key！")
+    st.error("🚨 找不到 API Key！")
     st.stop()
 
 api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 
 # ==========================================
-# 3. 侧边栏：必做版权信息 & 导航提示
+# 3. 侧边栏：版权信息 & 导航提示
 # ==========================================
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/zh/thumb/4/4c/Nanjing_University_Logo.svg/1200px-Nanjing_University_Logo.svg.png", width=120)
+    # 只要图片和 main.py 放在同一个文件夹里，直接写名字就行！
+    st.image("logo.png", width=120)
     st.title("🎓 创作者版权信息")
-    st.info("**院系**：南京大学 XX学院\n\n**课程**：《人工智能 B》")
-    st.success("**🧑‍💻 项目组成员：**\n- **学号1**：231XXXX 张三\n- **学号2**：231XXXX 李四\n- **学号3**：231XXXX 王五")
+    st.info("南京大学 安邦书院\n")
+    st.success("\n- 251830038 杨宝鑫\n- 251830056 陈琪睿\n- 251200015 张跃恒")
     st.markdown("---")
     st.markdown("💡 **Tip**: 欢迎体验右侧的 `AI 智能答疑` 模块！它已经学习了本站的所有活动与推文信息。")
 
