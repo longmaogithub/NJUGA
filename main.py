@@ -243,14 +243,44 @@ with tab1:
         st.write("负责日常事务、物资准备、财务报销和志愿时长录入。")
 
 # ----------------- 标签页 2：活动通知 -----------------
+# ----------------- 标签页 2：活动通知（🍎 苹果风卡片展示） -----------------
 with tab2:
     st.markdown("### 🔥 最新活动")
-    for act in ACTIVITY_DATA:
-        with st.expander(f"{act['title']} (状态: {act['status']})"):
-            st.write(f"**时间**：{act['date']}")
-            st.write(f"**详情**：{act['desc']}")
-            if act['status'] == "报名中":
-                st.button("🔗 点击前往报名表单", key=act['title']) 
+    st.markdown("所有活动均已整理成杂志风卡片，点击卡片了解详情")
+    st.write("")  # 留白
+
+    # 双列布局展示
+    col1, col2 = st.columns(2, gap="large")
+
+    for i, act in enumerate(ACTIVITY_DATA):
+        target_col = col1 if i % 2 == 0 else col2
+        with target_col:
+
+            # 🌟 尝试读取本地封面图，如果没有就显示渐变占位图
+            img_base64 = ""
+            if "cover" in act and os.path.exists(act["cover"]):
+                with open(act["cover"], "rb") as img_file:
+                    img_base64 = base64.b64encode(img_file.read()).decode()
+
+            img_html = (
+                f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">'
+                if img_base64
+                else '<div style="width:100%; height:200px; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
+            )
+
+            st.markdown(f"""
+            <div class="apple-card">
+                <div class="card-img-container">
+                    {img_html}
+                </div>
+                <div class="card-content">
+                    <div class="card-title">{act['title']}</div>
+                    <div class="card-meta">📅 {act['date']} ｜ 当前状态：{act['status']}</div>
+                    <div class="card-summary">{act['desc']}</div>
+                    {"<a href='#' class='apple-btn'>报名入口 🔗</a>" if act['status'] == "报名中" else ""}
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
 
 # ----------------- 标签页 3：推文 (🍎 苹果级子选项卡排版) -----------------
 with tab3:
