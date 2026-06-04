@@ -244,7 +244,7 @@ with tab1:
 
 # ----------------- 标签页 2：活动通知 -----------------
 # ----------------- 标签页 2：活动通知（🍎 苹果风卡片展示） -----------------
-with tab3:
+with tab2:
     st.markdown("### 🔥 最新活动")
     st.markdown("脚步丈量大地。")
     st.write("") # 留白
@@ -283,7 +283,7 @@ with tab3:
                         <div class="card-content">
                             <div class="card-title">{art['title']}</div>
                             <div class="card-meta">📅 {art['date']} ｜  {art['status']}</div>
-                            <div class="card-summary">{art['summary']}</div>
+                            <div class="card-summary">{art['desc']}</div>
                             <a href="{art['url']}" target="_blank" class="apple-btn">阅读全文 ↗</a>
                         </div>
                     </div>
