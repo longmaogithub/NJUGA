@@ -135,34 +135,45 @@ def get_association_knowledge_base() -> str:
     """
     组装喂给 AI 的提示词 (动态组装版 - 支持专栏分类)
     """
-    kb = "你现在是南京大学地理协会(NJUGA)的官方AI智能答疑小助手。\n"
-    kb += "你的任务是热情、准确地回答同学们关于协会的提问。你的语气应该像一个亲切的学长/学姐。\n"
-    kb += "以下是关于协会的全部权威信息。当同学问及相关内容时，请基于以下信息进行解答：\n\n"
+    kb = (
+        "你现在是南京大学地理协会(NJUGA)的官方AI智能答疑小助手。\n"
+        "你的任务是热情、准确地回答同学们关于协会的提问。你的语气应该像一个亲切的学长/学姐。\n"
+        "以下是关于协会的全部权威信息。当同学问及相关内容时，请基于以下信息进行解答：\n\n"
+    )
     kb += NJUGA_CORE_KNOWLEDGE
-    
+
     # 注入【最新活动】数据
     kb += "\n\n【最新动态与活动通知（重要！）】：\n"
     if not ACTIVITY_DATA:
         kb += "当前暂无最新活动。\n"
     else:
-        for act in ACTIVITY_DATA:
-            kb += f"- 活动名称：{act['title']}\n  举办时间：{act['date']}\n  当前状态：{act['status']}\n  详细介绍：{act['desc']}\n"
-            if "url" in art:
-                    kb += f"  原文链接：{art['url']}\n"
-            
-    # 👇 修改了这里：让 AI 知道推文是分了专栏的
+        # 遍历每个分类
+        for category, activities in ACTIVITY_DATA.items():
+            kb += f"\n--- 分类：{category} ---\n"
+            for act in activities:
+                kb += (
+                    f"- 活动名称：{act.get('title','')}\n"
+                    f"  举办时间：{act.get('date','')}\n"
+                    f"  当前状态：{act.get('status','')}\n"
+                    f"  详细介绍：{act.get('desc','').replace('\n','\\n  ')}\n"
+                )
+                if "url" in act:
+                    kb += f"  原文链接：{act['url']}\n"
+
+    # 注入【往期精选推文】数据
     kb += "\n【往期精选推文（已分类，如果同学问起相关资料，请把链接直接发给他们）】：\n"
     if not ARTICLE_DATA:
         kb += "当前暂无推文。\n"
     else:
-        # .items() 可以同时拿出专栏名字(category)和里面的文章列表(articles)
         for category, articles in ARTICLE_DATA.items():
             kb += f"\n--- 专栏：{category} ---\n"
             for art in articles:
-                kb += f"- 推文标题：《{art['title']}》\n"
-                kb += f"  作者：{art['author']}\n"
-                kb += f"  摘要：{art['summary']}\n"
+                kb += (
+                    f"- 推文标题：《{art.get('title','')}》\n"
+                    f"  作者：{art.get('author','')}\n"
+                    f"  摘要：{art.get('summary','').replace('\n','\\n  ')}\n"
+                )
                 if "url" in art:
                     kb += f"  原文链接：{art['url']}\n"
-                
+
     return kb
