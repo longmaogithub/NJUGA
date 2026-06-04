@@ -45,11 +45,14 @@ with st.sidebar:
 # ==========================================
 # 4. 主界面：三选项卡 (Tabs) 排版设计
 # ==========================================
-st.title("🌍 欢迎来到南京大学地理协会 (NJUGA)")
-st.markdown("丈量祖国大地，普及地理科学。探索世界，从这里出发。")
+st.title("南京大学地理协会")
+st.markdown("地理无界 世界相连")
 
-# 创建三个标签页
-tab1, tab2, tab3 = st.tabs(["🏠 协会首页", "📰 资讯与活动", "🤖 AI 智能答疑 (Beta)"])
+# ==========================================
+# 4. 主界面：四选项卡 (Tabs) 排版设计
+# ==========================================
+# 把原本的 3 个 tab 升级为 4 个
+tab1, tab2, tab3, tab4 = st.tabs(["🏠 首页", "🔥 活动通知", "📚 相关推文", "🤖 AI 智能答疑"])
 
 # ----------------- 标签页 1：首页 -----------------
 with tab1:
@@ -66,27 +69,31 @@ with tab1:
         # 放一张地质/风景相关的占位图，提升逼格
         st.image("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80", caption="用脚步丈量大地", use_column_width=True)
 
-# ----------------- 标签页 2：资讯与活动 -----------------
+# ----------------- 标签页 2：活动通知 -----------------
 with tab2:
     st.header("🔥 最新活动")
     # 动态渲染字典里的活动数据
     for act in ACTIVITY_DATA:
-        # 使用 expander 制作折叠卡片效果
         with st.expander(f"{act['title']} (状态: {act['status']})"):
             st.write(f"**⏰ 时间**：{act['date']}")
             st.write(f"**📍 详情**：{act['desc']}")
             if act['status'] == "报名中":
-                st.button("🔗 点击前往报名表单", key=act['title']) # 按钮占位
+                st.button("🔗 点击前往报名表单", key=act['title']) 
 
-    st.markdown("---")
-    st.header("📚 往期精选推文")
-    for art in ARTICLE_DATA:
-        st.markdown(f"#### {art['title']}")
-        st.caption(f"作者: {art['author']}")
-        st.write(art['summary'])
-
-# ----------------- 标签页 3：AI 答疑模块 -----------------
+# ----------------- 标签页 3：相关推文 (你的新需求) -----------------
 with tab3:
+    st.header("📚 往期精选推文")
+    # 我在这里给你加了一个外边框 (border=True)，让推文看起来像一张张卡片，更美观！
+    for art in ARTICLE_DATA:
+        with st.container(border=True):
+            st.markdown(f"#### {art['title']}")
+            st.caption(f"✍️ 作者: {art['author']}")
+            st.write(art['summary'])
+            # 增加一个模拟的阅读按钮
+            st.button("📖 阅读原文", key=art['title']+"_btn")
+
+# ----------------- 标签页 4：AI 答疑模块 -----------------
+with tab4:
     st.header("🤖 NJUGA 智能百事通")
     st.markdown("你可以问我：*这周末有活动吗？* 或者 *你们怎么教 GIS？*")
     
@@ -94,7 +101,6 @@ with tab3:
     if "messages" not in st.session_state:
         knowledge_base = get_association_knowledge_base()
         st.session_state.messages = [{"role": "system", "content": knowledge_base}]
-        # 让 AI 先打个招呼
         st.session_state.messages.append({"role": "assistant", "content": "你好！我是南大地协的 AI 小助手，关于协会的任何问题都可以问我哦！🌍"})
 
     # 渲染聊天记录
@@ -103,31 +109,22 @@ with tab3:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
 
-    # 处理聊天输入
+    # 处理聊天输入 (保留了之前的高级流式打字机效果)
     if user_input := st.chat_input("输入关于地协的问题..."):
-        # 1. 立即显示用户的问题
         st.session_state.messages.append({"role": "user", "content": user_input})
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        # 2. 准备显示 AI 的回答 (带有打字机效果)
         with st.chat_message("assistant"):
-            # 获取数据流
             stream_response = api_client.generate_stream_response(st.session_state.messages)
             
-            # 容错处理：如果返回的是字符串，说明报错了
             if isinstance(stream_response, str):
                 st.error(f"网络异常: {stream_response}")
             else:
-                # 核心魔法：定义一个生成器，把流里面的字一个个剥离出来
                 def stream_generator():
                     for chunk in stream_response:
-                        # 确保不为空才输出
                         if chunk.choices[0].delta.content:
                             yield chunk.choices[0].delta.content
                 
-                # st.write_stream 会自动处理打字机动画！极其丝滑！
                 full_answer = st.write_stream(stream_generator())
-                
-                # 把最终完整的回答存入历史记录
                 st.session_state.messages.append({"role": "assistant", "content": full_answer})
