@@ -104,16 +104,29 @@ with tab3:
 
     # 处理聊天输入
     if user_input := st.chat_input("输入关于地协的问题..."):
+        # 1. 立即显示用户的问题
         st.session_state.messages.append({"role": "user", "content": user_input})
         with st.chat_message("user"):
             st.markdown(user_input)
 
+        # 2. 准备显示 AI 的回答 (带有打字机效果)
         with st.chat_message("assistant"):
-            with st.spinner("查阅协会资料中..."):
-                result = api_client.generate_response(st.session_state.messages)
-                if result["success"]:
-                    answer = result["content"]
-                    st.markdown(answer)
-                    st.session_state.messages.append({"role": "assistant", "content": answer})
-                else:
-                    st.error(f"网络异常: {result['error_msg']}")
+            # 获取数据流
+            stream_response = api_client.generate_stream_response(st.session_state.messages)
+            
+            # 容错处理：如果返回的是字符串，说明报错了
+            if isinstance(stream_response, str):
+                st.error(f"网络异常: {stream_response}")
+            else:
+                # 核心魔法：定义一个生成器，把流里面的字一个个剥离出来
+                def stream_generator():
+                    for chunk in stream_response:
+                        # 确保不为空才输出
+                        if chunk.choices[0].delta.content:
+                            yield chunk.choices[0].delta.content
+                
+                # st.write_stream 会自动处理打字机动画！极其丝滑！
+                full_answer = st.write_stream(stream_generator())
+                
+                # 把最终完整的回答存入历史记录
+                st.session_state.messages.append({"role": "assistant", "content": full_answer})

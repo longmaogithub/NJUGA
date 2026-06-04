@@ -43,3 +43,22 @@ class ReviewAssistantAPI:
                 "tokens": 0,
                 "error_msg": f"接口调用失败: {str(e)}"
             }
+    
+    def generate_stream_response(self, messages: list):
+        """
+        【高级功能：流式输出】
+        开启 stream=True，让 AI 像打字机一样一个字一个字返回
+        """
+        optimized_messages = self.optimize_chat_history(messages)
+        try:
+            # 注意这里多了一个 stream=True 参数
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=optimized_messages,
+                max_tokens=800, 
+                temperature=0.5,
+                stream=True  # <--- 核心魔法在这里
+            )
+            return response # 返回的是一个数据流对象
+        except Exception as e:
+            return str(e) # 报错时返回字符串
