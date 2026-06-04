@@ -8,21 +8,45 @@ ACTIVITY_DATA = [
     {"title": "🌍 趣味地理知识竞赛", "date": "2024-05-10", "status": "筹备中", "desc": "不限院系！寻找南大最懂地理的你。一等奖可获赠精美地球仪一台及大疆无人机体验券。"},
 ]
 
-# utils.py 的中间部分，替换为你现在的 ARTICLE_DATA
-ARTICLE_DATA = [
-    {
-        "title": "九州风物 | 话说温州：一片繁华海上头", 
-        "author": "王瓯", 
-        "summary": "……形散而神不散，才是这片被嶙峋地形、曲折水道所切割的土地的状态。",
-        "url": "https://mp.weixin.qq.com/s/076ZCx_8UUuihcRr7U8f4w"  
-    },
-    {
-        "title": "地图上的五二〇：一场地理视角的校史漫步", 
-        "author": "蔡钱岚 李枕戈 王瓯", 
-        "summary": "对南京大学而言，5月20日始终是一个特殊的日子",
-        "url": "https://mp.weixin.qq.com/s/dPGRAvt0_j7S6D2aN4IQxw" 
-    },
-]
+# utils.py
+
+# ==========================================
+# 核心改变：把原本的 [] 变成了 {}，支持无限个专栏分区！
+# ==========================================
+ARTICLE_DATA = {
+    "🌅 九州风物系列": [
+        {
+            "title": "话说温州：一片繁华海上头", 
+            "author": "王瓯", 
+            "summary": "形散而神不散，才是这片被嶙峋地形、曲折水道所切割的土地的状态。本文从地理视角带你重新认识温州。",
+            "url": "https://mp.weixin.qq.com/" 
+        },
+        {
+            "title": "从南大出发，探寻中国最美丹霞地貌", 
+            "author": "宣传部", 
+            "summary": "本期推文带你走进张掖，用地理学的视角解构色彩斑斓的丹霞奇观...",
+            "url": "https://mp.weixin.qq.com/"
+        }
+    ],
+    "💻 GIS 技能工坊": [
+        {
+            "title": "GIS 软件零基础入门指南（上）", 
+            "author": "学术部", 
+            "summary": "很多同学问如何画出高大上的地图？本期手把手教你安装和使用 ArcGIS...",
+            "url": "https://mp.weixin.qq.com/"
+        }
+    ],
+    "👣 行走南大 (活动回顾)": [
+        {
+            "title": "紫金山毅行回顾：用脚步丈量春天", 
+            "author": "活动部", 
+            "summary": "上周末，我们和百名南大同学一起登顶紫金山，来看前方发回的绝美照片！",
+            "url": "https://mp.weixin.qq.com/"
+        }
+    ]
+}
+
+
 
 # ==========================================
 # 2. 地协核心万字知识库 (AI 的超级大脑)
@@ -52,40 +76,34 @@ NJUGA_CORE_KNOWLEDGE = """
 
 def get_association_knowledge_base() -> str:
     """
-    组装喂给 AI 的提示词 (动态组装版)
+    组装喂给 AI 的提示词 (动态组装版 - 支持专栏分类)
     """
-    # 1. 基础人设与静态长文知识库
     kb = "你现在是南京大学地理协会(NJUGA)的官方AI智能答疑小助手。\n"
     kb += "你的任务是热情、准确地回答同学们关于协会的提问。你的语气应该像一个亲切的学长/学姐。\n"
     kb += "以下是关于协会的全部权威信息。当同学问及相关内容时，请基于以下信息进行解答：\n\n"
     kb += NJUGA_CORE_KNOWLEDGE
     
-    # ==========================================
-    # 核心魔法：让程序自动读取上面的字典，翻译给 AI 听
-    # ==========================================
-    
-    # 2. 自动注入【最新活动】数据
+    # 注入【最新活动】数据
     kb += "\n\n【最新动态与活动通知（重要！）】：\n"
     if not ACTIVITY_DATA:
         kb += "当前暂无最新活动。\n"
     else:
         for act in ACTIVITY_DATA:
-            kb += f"- 活动名称：{act['title']}\n"
-            kb += f"  举办时间：{act['date']}\n"
-            kb += f"  当前状态：{act['status']}\n"
-            kb += f"  详细介绍：{act['desc']}\n"
+            kb += f"- 活动名称：{act['title']}\n  举办时间：{act['date']}\n  当前状态：{act['status']}\n  详细介绍：{act['desc']}\n"
             
-    # 3. 自动注入【往期推文】数据 (附带链接，让 AI 可以直接发给用户)
-    kb += "\n【往期精选推文（如果同学问起相关资料，请把链接直接发给他们）】：\n"
+    # 👇 修改了这里：让 AI 知道推文是分了专栏的
+    kb += "\n【往期精选推文（已分类，如果同学问起相关资料，请把链接直接发给他们）】：\n"
     if not ARTICLE_DATA:
         kb += "当前暂无推文。\n"
     else:
-        for art in ARTICLE_DATA:
-            kb += f"- 推文标题：《{art['title']}》\n"
-            kb += f"  作者：{art['author']}\n"
-            kb += f"  摘要：{art['summary']}\n"
-            # 如果字典里有 url 字段，就告诉 AI，让 AI 能直接甩链接给用户！
-            if "url" in art:
-                kb += f"  原文链接：{art['url']}\n"
+        # .items() 可以同时拿出专栏名字(category)和里面的文章列表(articles)
+        for category, articles in ARTICLE_DATA.items():
+            kb += f"\n--- 专栏：{category} ---\n"
+            for art in articles:
+                kb += f"- 推文标题：《{art['title']}》\n"
+                kb += f"  作者：{art['author']}\n"
+                kb += f"  摘要：{art['summary']}\n"
+                if "url" in art:
+                    kb += f"  原文链接：{art['url']}\n"
                 
     return kb

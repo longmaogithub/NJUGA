@@ -132,20 +132,33 @@ with tab2:
             if act['status'] == "报名中":
                 st.button("🔗 点击前往报名表单", key=act['title']) 
 
-# ----------------- 标签页 3：相关推文 (你的新需求) -----------------
+# ----------------- 标签页 3：相关推文 -----------------
 with tab3:
-    st.header("往期精选推文")
-    # 我在这里给你加了一个外边框 (border=True)，让推文看起来像一张张卡片，更美观！
-    for art in ARTICLE_DATA:
-        with st.container(border=True):
-            st.markdown(f"#### {art['title']}")
-            st.caption(f"作者: {art['author']}")
-            st.write(art['summary'])
-            st.link_button("阅读原文", url=art['url'])
+    st.header("📚 往期精选推文", anchor=False)
+    st.markdown("在这里，你可以按专栏浏览我们过去沉淀的优质内容。")
+    st.markdown("---")
+    
+    # 核心逻辑：遍历字典里的每一个分类
+    for category, articles in ARTICLE_DATA.items():
+        
+        # 1. 打印专栏的大标题
+        st.subheader(category, anchor=False)
+        
+        # 2. 打印这个专栏下的所有文章
+        for art in articles:
+            with st.container(border=True):
+                st.markdown(f"#### {art['title']}")
+                st.caption(f"✍️ 作者: {art['author']}")
+                st.write(art['summary'])
+                if "url" in art:
+                    st.link_button("📖 阅读原文", url=art["url"])
+                    
+        # 3. 在每个专栏画完之后，加一条灰色的分割线，显得更清爽
+        st.divider()
 
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
-    st.header("🤖 NJUGA 智能百事通")
+    st.header("NJUGA 智能百事通")
     st.markdown("你可以问我：*这周末有活动吗？* 或者 *九州风物的推文有链接吗？*")
     
     # 1. 仅仅初始化聊天记录的外壳和第一句问候
