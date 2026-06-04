@@ -35,7 +35,7 @@ api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 # ==========================================
 with st.sidebar:
     # 只要图片和 main.py 放在同一个文件夹里，直接写名字就行！
-    st.image("logo.png", width=120)
+    st.image("logo.jpg", width=120)
     st.title("🎓 创作者版权信息")
     st.info("南京大学 安邦书院\n")
     st.success("\n- 251830038 杨宝鑫\n- 251830056 陈琪睿\n- 251200015 张跃恒")
