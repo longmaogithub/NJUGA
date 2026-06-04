@@ -244,43 +244,50 @@ with tab1:
 
 # ----------------- 标签页 2：活动通知 -----------------
 # ----------------- 标签页 2：活动通知（🍎 苹果风卡片展示） -----------------
-with tab2:
+with tab3:
     st.markdown("### 🔥 最新活动")
-    st.markdown("所有活动均已整理成杂志风卡片，点击卡片了解详情")
-    st.write("")  # 留白
+    st.markdown("脚步丈量大地。")
+    st.write("") # 留白
 
-    # 双列布局展示
-    col1, col2 = st.columns(2, gap="large")
+    # 获取所有专栏名称
+    categories = list(ARTICLE_DATA.keys())
+    
+    # 🌟 核心魔法 1：在 Tab 3 内部再创建一组子 Tabs！
+    sub_tabs = st.tabs(categories)
 
-    for i, act in enumerate(ACTIVITY_DATA):
-        target_col = col1 if i % 2 == 0 else col2
-        with target_col:
+    # 遍历每个专栏和对应的子标签页
+    for tab, category in zip(sub_tabs, categories):
+        with tab:
+            articles = ARTICLE_DATA[category]
+            col1, col2 = st.columns(2, gap="large")
 
-            # 🌟 尝试读取本地封面图，如果没有就显示渐变占位图
-            img_base64 = ""
-            if "cover" in act and os.path.exists(act["cover"]):
-                with open(act["cover"], "rb") as img_file:
-                    img_base64 = base64.b64encode(img_file.read()).decode()
+            for i, art in enumerate(articles):
+                target_col = col1 if i % 2 == 0 else col2
+                with target_col:
+                    
+                    # 🌟 核心魔法 2：将本地图片转为 Base64，彻底融入 HTML 卡片
+                    img_base64 = ""
+                    if "cover" in art and os.path.exists(art["cover"]):
+                        with open(art["cover"], "rb") as img_file:
+                            img_base64 = base64.b64encode(img_file.read()).decode()
+                    
+                    # 生成图片 HTML 代码（如果没有本地图，放一张炫酷的渐变占位图）
+                    img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
 
-            img_html = (
-                f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">'
-                if img_base64
-                else '<div style="width:100%; height:200px; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
-            )
-
-            st.markdown(f"""
-            <div class="apple-card">
-                <div class="card-img-container">
-                    {img_html}
-                </div>
-                <div class="card-content">
-                    <div class="card-title">{act['title']}</div>
-                    <div class="card-meta">📅 {act['date']} ｜ 当前状态：{act['status']}</div>
-                    <div class="card-summary">{act['desc']}</div>
-                    {"<a href='#' class='apple-btn'>报名入口 🔗</a>" if act['status'] == "报名中" else ""}
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+                    # 渲染带有极其丝滑特效的苹果风卡片
+                    st.markdown(f"""
+                    <div class="apple-card">
+                        <div class="card-img-container">
+                            {img_html}
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">{art['title']}</div>
+                            <div class="card-meta">📅 {art['date']} ｜  {art['status']}</div>
+                            <div class="card-summary">{art['summary']}</div>
+                            <a href="{art['url']}" target="_blank" class="apple-btn">阅读全文 ↗</a>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
 
 # ----------------- 标签页 3：推文 (🍎 苹果级子选项卡排版) -----------------
 with tab3:
