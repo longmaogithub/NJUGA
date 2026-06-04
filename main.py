@@ -244,47 +244,52 @@ with tab1:
 
 # ----------------- 标签页 2：活动通知 -----------------
 # ----------------- 标签页 2：活动通知（🍎 苹果风卡片展示） -----------------
+# ----------------- 标签页 2：活动通知（🍎 苹果风卡片展示） -----------------
 with tab2:
     st.markdown("### 🔥 最新活动")
     st.markdown("脚步丈量大地。")
     st.write("") # 留白
 
-    # 获取所有专栏名称
-    categories = list(ARTICLE_DATA.keys())
+    # ✅ 修正 1：获取 活动(ACTIVITY_DATA) 的分类
+    act_categories = list(ACTIVITY_DATA.keys())
     
-    # 🌟 核心魔法 1：在 Tab 3 内部再创建一组子 Tabs！
-    sub_tabs = st.tabs(categories)
+    # 核心魔法 1：在 Tab 2 内部创建子 Tabs
+    act_sub_tabs = st.tabs(act_categories)
 
-    # 遍历每个专栏和对应的子标签页
-    for tab, category in zip(sub_tabs, categories):
+    # 遍历每个活动专栏
+    for tab, category in zip(act_sub_tabs, act_categories):
         with tab:
-            articles = ARTICLE_DATA[category]
+            # ✅ 修正 2：读取 活动(ACTIVITY_DATA) 里的数据
+            activities = ACTIVITY_DATA[category]
             col1, col2 = st.columns(2, gap="large")
 
-            for i, art in enumerate(articles):
+            # ✅ 修正 3：变量名改叫 act (代表 activity)
+            for i, act in enumerate(activities):
                 target_col = col1 if i % 2 == 0 else col2
                 with target_col:
                     
-                    # 🌟 核心魔法 2：将本地图片转为 Base64，彻底融入 HTML 卡片
                     img_base64 = ""
-                    if "cover" in art and os.path.exists(art["cover"]):
-                        with open(art["cover"], "rb") as img_file:
+                    if "cover" in act and os.path.exists(act["cover"]):
+                        with open(act["cover"], "rb") as img_file:
                             img_base64 = base64.b64encode(img_file.read()).decode()
                     
-                    # 生成图片 HTML 代码（如果没有本地图，放一张炫酷的渐变占位图）
-                    img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
+                    # 如果没有图，活动板块我给你配了一个暖色调的渐变占位图
+                    img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>'
 
-                    # 渲染带有极其丝滑特效的苹果风卡片
+                    # ✅ 修正 4：把 HTML 里的字典键换成活动专属的 status, desc
+                    # 动态按钮文字：如果是"报名中"，显示"点击报名"，否则显示"查看详情"
+                    btn_text = "立即报名 ↗" if act['status'] == "报名中" else "查看详情 ↗"
+                    
                     st.markdown(f"""
                     <div class="apple-card">
                         <div class="card-img-container">
                             {img_html}
                         </div>
                         <div class="card-content">
-                            <div class="card-title">{art['title']}</div>
-                            <div class="card-meta">📅 {art['date']} ｜  {art['status']}</div>
-                            <div class="card-summary">{art['desc']}</div>
-                            <a href="{art['url']}" target="_blank" class="apple-btn">阅读全文 ↗</a>
+                            <div class="card-title">{act['title']}</div>
+                            <div class="card-meta">📅 {act['date']} ｜ 📌 {act['status']}</div>
+                            <div class="card-summary">{act['desc']}</div>
+                            <a href="{act.get('url', '#')}" target="_blank" class="apple-btn">{btn_text}</a>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
