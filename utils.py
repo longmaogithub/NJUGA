@@ -141,14 +141,33 @@ def get_association_knowledge_base() -> str:
     kb += NJUGA_CORE_KNOWLEDGE
     
     # 注入【最新活动】数据
-    kb += "\n\n【最新动态与活动通知（重要！）】：\n"
-    if not ACTIVITY_DATA:
-        kb += "当前暂无最新活动。\n"
-    else:
-        for act in ACTIVITY_DATA:
-            kb += f"- 活动名称：{act['title']}\n  举办时间：{act['date']}\n  当前状态：{act['status']}\n  详细介绍：{act['desc']}\n"
-            if "url" in art:
-                    kb += f"  原文链接：{art['url']}\n"
+    # 注入活动数据
+
+kb += "\n\n【最新动态与活动通知】\n"
+
+if not ACTIVITY_DATA:
+
+    kb += "当前暂无活动。\n"
+
+else:
+
+    for category, activities in ACTIVITY_DATA.items():
+
+        kb += f"\n===== {category} =====\n"
+
+        for act in activities:
+
+            kb += (
+                f"活动名称：{act.get('title','')}\n"
+                f"举办时间：{act.get('date','')}\n"
+                f"活动状态：{act.get('status','')}\n"
+                f"活动介绍：{act.get('desc','')}\n"
+            )
+
+            if act.get("url"):
+                kb += f"原文链接：{act['url']}\n"
+
+            kb += "\n"
             
     # 👇 修改了这里：让 AI 知道推文是分了专栏的
     kb += "\n【往期精选推文（已分类，如果同学问起相关资料，请把链接直接发给他们）】：\n"
