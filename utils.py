@@ -16,40 +16,42 @@ ACTIVITY_DATA = [
 ARTICLE_DATA = {
     "🌅 九州风物系列": [
         {
-            "title": "话说温州：一片繁华海上头", 
-            "author": "王瓯", 
-            "date":"2026年4月9日",
+            "title": "话说温州：一片繁华海上头",
+            "author": "王瓯",
+            "date": "2025年4月9日",
             "summary": "形散而神不散，才是这片被嶙峋地形、曲折水道所切割的土地的状态。本文从地理视角带你重新认识温州。",
             "url": "https://mp.weixin.qq.com/s/076ZCx_8UUuihcRr7U8f4w",
-            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
+            "cover": "images/wenzhou.jpg"
         },
         {
-            "title": "从南大出发，探寻中国最美丹霞地貌", 
-            "author": "宣传部", 
-            "date":"2026年4月9日",
-            "summary": "本期推文带你走进张掖，用地理学的视角解构色彩斑斓的丹霞奇观...",
+            "title": "从南大出发，探寻中国最美丹霞地貌",
+            "author": "宣传部",
+            "date": "2025年4月9日",
+            "summary": "本期推文带你走进张掖，用地理学视角解构色彩斑斓的丹霞奇观。",
             "url": "https://mp.weixin.qq.com/",
-            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
+            "cover": "images/wenzhou.jpg"
         }
     ],
-    "💻 GIS 技能工坊": [
+
+    "💻 GIS技能工坊": [
         {
-            "title": "GIS 软件零基础入门指南（上）", 
-            "author": "学术部", 
-            "date":"2026年4月9日",
-            "summary": "很多同学问如何画出高大上的地图？本期手把手教你安装和使用 ArcGIS...",
+            "title": "GIS软件零基础入门指南",
+            "author": "学术部",
+            "date": "2025年4月9日",
+            "summary": "很多同学问如何画出高大上的地图？本期手把手带你入门 GIS。",
             "url": "https://mp.weixin.qq.com/",
-            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
+            "cover": "images/wenzhou.jpg"
         }
     ],
-    "👣 行走南大 (活动回顾)": [
+
+    "👣 行走南大": [
         {
-            "title": "紫金山毅行回顾：用脚步丈量春天", 
-            "author": "活动部", 
-            "date":"2026年4月9日",
-            "summary": "上周末，我们和百名南大同学一起登顶紫金山，来看前方发回的绝美照片！",
+            "title": "紫金山毅行回顾：用脚步丈量春天",
+            "author": "活动部",
+            "date": "2025年4月9日",
+            "summary": "和百余位同学一起登顶紫金山，在春风中重新认识南京。",
             "url": "https://mp.weixin.qq.com/",
-            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
+            "cover": "images/wenzhou.jpg"
         }
     ]
 }

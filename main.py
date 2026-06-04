@@ -10,6 +10,60 @@ from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 st.markdown("""
 <style>
 
+.mag-card{
+    background:white;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    margin-bottom:30px;
+    transition:.3s;
+}
+
+.mag-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.mag-title{
+    font-size:28px;
+    font-weight:800;
+    color:#1e293b;
+    margin-bottom:10px;
+}
+
+.mag-meta{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.mag-summary{
+    font-size:16px;
+    line-height:1.8;
+    color:#475569;
+}
+
+.read-btn{
+    display:inline-block;
+    background:#2563eb;
+    color:white !important;
+    padding:10px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    margin-top:20px;
+    font-weight:600;
+}
+
+.read-btn:hover{
+    background:#1d4ed8;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+
 .stApp{
     background: linear-gradient(
         180deg,
@@ -177,12 +231,15 @@ with tab2:
             if act['status'] == "报名中":
                 st.button("🔗 点击前往报名表单", key=act['title']) 
 
-# ----------------- 标签页 3：相关推文（杂志风，支持本地图片） -----------------
+# ----------------- 标签页 3：推文 -----------------
 with tab3:
-    st.header("📚 往期精选推文")
-    st.markdown("在这里，你可以按专栏浏览我们过去沉淀的优质内容。")
 
-    # 选择专栏
+    st.markdown("# 📚 往期精选推文")
+
+    st.markdown(
+        "这里收藏着南京大学地理协会过去几年最受欢迎的内容。"
+    )
+
     category = st.selectbox(
         "选择专栏",
         list(ARTICLE_DATA.keys())
@@ -190,49 +247,48 @@ with tab3:
 
     articles = ARTICLE_DATA[category]
 
-    # 双列布局
-    col1, col2 = st.columns(2, gap="large")
+    col1, col2 = st.columns(2)
 
     for i, art in enumerate(articles):
-        target_col = col1 if i % 2 == 0 else col2
 
-        with target_col:
-            # 显示本地封面图
-            if "url_image" in art:
-                import os
+        target = col1 if i % 2 == 0 else col2
 
-                img_path = art.get("url_image")
+        with target:
 
-            if img_path and os.path.exists(img_path):
+            if os.path.exists(art["cover"]):
+
                 st.image(
-                    img_path,
+                    art["cover"],
                     use_container_width=True
                 )
-            else:
-                st.warning(f"图片不存在：{img_path}")
 
-            # 杂志风卡片信息
             st.markdown(f"""
-                <div style="
-                    border-radius:15px;
-                    padding:15px;
-                    margin-top:10px;
-                    background: linear-gradient(135deg, #fef3c7, #fde68a);
-                    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-                ">
-                    <h3 style="color:#92400e;">{art['title']}</h3>
-                    <p style="font-size:14px; color:#78350f;"><strong>作者：</strong>{art['author']}</p>
-                    <p style="font-size:16px; color:#78350f;">{art['summary']}</p>
-                    <a href="{art['url']}" target="_blank" style="
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#92400e;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:5px;
-                        margin-top:10px;
-                    ">阅读全文 →</a>
-                </div>
+            <div class="mag-card">
+
+            <div style="padding:28px">
+
+            <div class="mag-title">
+            {art['title']}
+            </div>
+
+            <div class="mag-meta">
+            ✍ {art['author']} ｜ 📅 {art['date']}
+            </div>
+
+            <div class="mag-summary">
+            {art['summary']}
+            </div>
+
+            <a
+            href="{art['url']}"
+            target="_blank"
+            class="read-btn">
+            阅读全文 →
+            </a>
+
+            </div>
+
+            </div>
             """, unsafe_allow_html=True)
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
