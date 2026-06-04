@@ -177,7 +177,7 @@ with tab2:
             if act['status'] == "报名中":
                 st.button("🔗 点击前往报名表单", key=act['title']) 
 
-# ----------------- 标签页 3：相关推文（杂志风） -----------------
+# ----------------- 标签页 3：相关推文（杂志风，支持本地图片） -----------------
 with tab3:
     st.header("📚 往期精选推文")
     st.markdown("在这里，你可以按专栏浏览我们过去沉淀的优质内容。")
@@ -197,30 +197,36 @@ with tab3:
         target_col = col1 if i % 2 == 0 else col2
 
         with target_col:
-            st.markdown(f"""
-            <div style="
-                border-radius:15px;
-                padding:20px;
-                margin-bottom:20px;
-                background: linear-gradient(135deg, #fef3c7, #fde68a);
-                box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-            ">
-                {"<img src='" + art['url_image'] + "' width='100%' style='border-radius:10px; margin-bottom:10px;'>" if "url_image" in art else ""}
-                <h3 style="color:#92400e;">{art['title']}</h3>
-                <p style="font-size:14px; color:#78350f;"><strong>作者：</strong>{art['author']}</p>
-                <p style="font-size:16px; color:#78350f;">{art['summary']}</p>
-                <a href="{art['url']}" target="_blank" style="
-                    display:inline-block;
-                    padding:6px 12px;
-                    background:#92400e;
-                    color:white;
-                    text-decoration:none;
-                    border-radius:5px;
-                    margin-top:10px;
-                ">阅读全文 →</a>
-            </div>
-            """, unsafe_allow_html=True)
+            # 显示本地封面图
+            if "url_image" in art:
+                st.image(
+                    art["url_image"], 
+                    use_column_width=True
+                )
 
+            # 杂志风卡片信息
+            st.markdown(f"""
+                <div style="
+                    border-radius:15px;
+                    padding:15px;
+                    margin-top:10px;
+                    background: linear-gradient(135deg, #fef3c7, #fde68a);
+                    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+                ">
+                    <h3 style="color:#92400e;">{art['title']}</h3>
+                    <p style="font-size:14px; color:#78350f;"><strong>作者：</strong>{art['author']}</p>
+                    <p style="font-size:16px; color:#78350f;">{art['summary']}</p>
+                    <a href="{art['url']}" target="_blank" style="
+                        display:inline-block;
+                        padding:6px 12px;
+                        background:#92400e;
+                        color:white;
+                        text-decoration:none;
+                        border-radius:5px;
+                        margin-top:10px;
+                    ">阅读全文 →</a>
+                </div>
+            """, unsafe_allow_html=True)
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
     st.header("NJUGA 智能百事通")
