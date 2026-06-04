@@ -149,8 +149,8 @@ with tab3:
         with st.container(border=True):
 
             st.markdown(f"### {art['title']}")
-            st.caption(f"✍️ 作者：{art['author']}")
-
+            st.caption(f"作者：{art['author']}")
+            st.date(f"{art['date']}")
             st.write(art['summary'])
 
             if "url" in art:
