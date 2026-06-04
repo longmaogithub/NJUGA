@@ -10,145 +10,52 @@ from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 st.markdown("""
 <style>
 
-.mag-hero{
-    position:relative;
-    padding:60px;
-    border-radius:32px;
-    overflow:hidden;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(15,23,42,.95),
-        rgba(30,64,175,.90)
-    );
-
-    color:white;
-    margin-bottom:40px;
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.15);
-}
-
-.mag-hero h1{
-    color:white !important;
-    font-size:58px;
-    font-weight:800;
-    margin-bottom:10px;
-}
-
-.mag-hero p{
-    font-size:20px;
-    opacity:.85;
-}
-
 .mag-card{
-    overflow:hidden;
-
-    border-radius:30px;
-
     background:white;
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.08);
-
-    transition:.35s;
-    margin-bottom:40px;
-}
-
-.mag-card:hover{
-    transform:
-    translateY(-10px)
-    scale(1.02);
-
-    box-shadow:
-    0 25px 60px rgba(0,0,0,.18);
-}
-
-.mag-cover{
-    width:100%;
-    height:320px;
-    object-fit:cover;
-}
-
-.mag-content{
-    padding:28px;
-}
-
-.mag-date{
-    color:#64748b;
-    font-size:14px;
-    font-weight:600;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-.mag-title{
-    font-size:32px;
-    font-weight:800;
-    color:#0f172a;
-    line-height:1.3;
-    margin-top:10px;
-}
-
-.mag-summary{
-    margin-top:18px;
-    color:#475569;
-    line-height:1.8;
-    font-size:16px;
-}
-
-.mag-author{
-    margin-top:18px;
-    color:#1e293b;
-    font-weight:600;
-}
-
-.mag-btn{
-    display:inline-block;
-
-    margin-top:25px;
-
-    padding:
-    12px 24px;
-
-    border-radius:999px;
-
-    text-decoration:none !important;
-
-    color:white !important;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-    );
-
-    font-weight:700;
-
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    margin-bottom:30px;
     transition:.3s;
 }
 
-.mag-btn:hover{
-    transform:scale(1.05);
+.mag-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
 }
 
-.mag-category{
+.mag-title{
+    font-size:28px;
+    font-weight:800;
+    color:#1e293b;
+    margin-bottom:10px;
+}
+
+.mag-meta{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.mag-summary{
+    font-size:16px;
+    line-height:1.8;
+    color:#475569;
+}
+
+.read-btn{
     display:inline-block;
+    background:#2563eb;
+    color:white !important;
+    padding:10px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    margin-top:20px;
+    font-weight:600;
+}
 
-    padding:
-    8px 16px;
-
-    border-radius:999px;
-
-    background:#eef2ff;
-
-    color:#4338ca;
-
-    font-weight:700;
-
-    margin-bottom:20px;
+.read-btn:hover{
+    background:#1d4ed8;
 }
 
 </style>
@@ -327,126 +234,11 @@ with tab2:
 # ----------------- 标签页 3：推文 -----------------
 with tab3:
 
-    st.markdown("""
-    <style>
+    st.markdown("# 📚 往期精选推文")
 
-    .apple-hero{
-        padding:80px 50px;
-        text-align:center;
-        border-radius:35px;
-        margin-bottom:40px;
-
-        background:
-        linear-gradient(
-        135deg,
-        #0f172a,
-        #1e3a8a,
-        #2563eb
-        );
-
-        color:white;
-    }
-
-    .apple-hero h1{
-        font-size:64px;
-        font-weight:900;
-        margin-bottom:15px;
-    }
-
-    .apple-hero p{
-        font-size:22px;
-        opacity:.85;
-    }
-
-    .article-card{
-        background:white;
-        border-radius:30px;
-        overflow:hidden;
-
-        box-shadow:
-        0 10px 40px rgba(0,0,0,.08);
-
-        transition:.4s;
-
-        margin-bottom:40px;
-    }
-
-    .article-card:hover{
-        transform:
-        translateY(-10px);
-
-        box-shadow:
-        0 25px 60px rgba(0,0,0,.15);
-    }
-
-    .article-img{
-        width:100%;
-        height:350px;
-        object-fit:cover;
-    }
-
-    .article-body{
-        padding:28px;
-    }
-
-    .article-date{
-        color:#94a3b8;
-        font-size:14px;
-    }
-
-    .article-title{
-        font-size:32px;
-        font-weight:800;
-        margin-top:10px;
-        color:#0f172a;
-        line-height:1.3;
-    }
-
-    .article-author{
-        margin-top:15px;
-        color:#475569;
-        font-weight:600;
-    }
-
-    .article-summary{
-        margin-top:18px;
-        color:#334155;
-        line-height:1.9;
-    }
-
-    .article-btn{
-        display:inline-block;
-
-        margin-top:25px;
-
-        padding:
-        12px 25px;
-
-        border-radius:999px;
-
-        background:
-        linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-        );
-
-        color:white !important;
-        text-decoration:none !important;
-        font-weight:700;
-    }
-
-    </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="apple-hero">
-        <h1>Geography Magazine</h1>
-        <p>
-        用空间理解时间 · 用土地解读文明
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        "这里收藏着我们最受欢迎的文章。"
+    )
 
     category = st.selectbox(
         "选择专栏",
@@ -463,53 +255,41 @@ with tab3:
 
         with target:
 
-            image_path = art["cover"]
+            if os.path.exists(art["cover"]):
 
-            if os.path.exists(image_path):
+                st.image(
+                    art["cover"],
+                    use_container_width=True
+                )
 
-                import base64
+            st.markdown(f"""
+            <div class="mag-card">
 
-                with open(image_path, "rb") as f:
-                    img_base64 = base64.b64encode(
-                        f.read()
-                    ).decode()
+            <div style="padding:28px">
 
-                st.markdown(f"""
-                <div class="article-card">
+            <div class="mag-title">
+            {art['title']}
+            </div>
 
-                    <img
-                    class="article-img"
-                    src="data:image/jpeg;base64,{img_base64}">
+            <div class="mag-meta">
+             {art['author']} ｜  {art['date']}
+            </div>
 
-                    <div class="article-body">
+            <div class="mag-summary">
+            {art['summary']}
+            </div>
 
-                        <div class="article-date">
-                        {art["date"]}
-                        </div>
+            <a
+            href="{art['url']}"
+            target="_blank"
+            class="read-btn">
+            阅读全文 →
+            </a>
 
-                        <div class="article-title">
-                        {art["title"]}
-                        </div>
+            </div>
 
-                        <div class="article-author">
-                        作者 · {art["author"]}
-                        </div>
-
-                        <div class="article-summary">
-                        {art["summary"]}
-                        </div>
-
-                        <a
-                        href="{art["url"]}"
-                        target="_blank"
-                        class="article-btn">
-                        阅读全文 →
-                        </a>
-
-                    </div>
-
-                </div>
-                """, unsafe_allow_html=True)
+            </div>
+            """, unsafe_allow_html=True)
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
     st.header("NJUGA 智能百事通")
