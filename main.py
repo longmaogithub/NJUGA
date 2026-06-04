@@ -388,9 +388,9 @@ with tab1:
 
     with st.expander("📌 社团简介", expanded=False):
         st.write("""
-南京大学地理协会成立于2006年。
+南京大学地理协会成立于2025年。
 
-协会以“丈量祖国大地，普及地理科学”为宗旨，
+协会以“地理无界 · 世界相连”为宗旨，
 致力于通过实地考察、城市漫步、学术讲座与地图制作，
 帮助同学们理解人与土地、历史与空间之间的关系。
 """)
@@ -413,21 +413,10 @@ with tab1:
 财务、物资、志愿时长管理
 """)
 
-    with st.expander("👥 人员构成", expanded=False):
-        st.markdown("""
-协会成员来自：
+    #with st.expander("👥 人员构成", expanded=False):
+      #  st.markdown("""
 
-- 地理与海洋科学学院
-- 大气科学学院
-- 环境学院
-- 建筑与城市规划学院
-- 软件学院
-- 人工智能学院
-- 安邦书院
-- 匡亚明学院
-
-以及南京大学各院系。
-""")
+#""")
 
     st.divider()
 
@@ -452,12 +441,16 @@ st.markdown("""
     <p style="font-size: 18px; line-height: 1.8; max-width: 700px; margin: 0 auto;">
         无论你来自什么专业，<br>
         只要对土地、城市与世界保持好奇，<br>
-        我们都欢迎你加入。
+        我们都欢迎你加入。<br>
+        活动QQ群：720915627 公众号：山河南观 小红书：南大地理协会<br>
     </p>
 </div>
 """, unsafe_allow_html=True)
 
 # ----------------- 页面底部版权信息 -----------------
+
+
+
 st.markdown("""
 <div style="
     width: 100%;
