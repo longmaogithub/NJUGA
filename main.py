@@ -248,49 +248,70 @@ with tab1:
 with tab2:
     st.markdown("### 🔥 最新活动")
     st.markdown("脚步丈量大地。")
-    st.write("") # 留白
+    st.write("")  # 留白
 
-    # ✅ 修正 1：获取 活动(ACTIVITY_DATA) 的分类
+    # 活动分类
     act_categories = list(ACTIVITY_DATA.keys())
     
-    # 核心魔法 1：在 Tab 2 内部创建子 Tabs
+    # 子 Tabs
     act_sub_tabs = st.tabs(act_categories)
 
-    # 遍历每个活动专栏
-    for tab, category in zip(act_sub_tabs, act_categories):
-        with tab:
-            # ✅ 修正 2：读取 活动(ACTIVITY_DATA) 里的数据
-            activities = ACTIVITY_DATA[category]
+    # 遍历每个分类
+    for tab_obj, category in zip(act_sub_tabs, act_categories):
+        with tab_obj:
+            activities = ACTIVITY_DATA.get(category, [])
+            if not activities:
+                st.info(f"暂无 {category} 的活动")
+                continue
+
             col1, col2 = st.columns(2, gap="large")
 
-            # ✅ 修正 3：变量名改叫 act (代表 activity)
             for i, act in enumerate(activities):
                 target_col = col1 if i % 2 == 0 else col2
                 with target_col:
-                    
+                    # 读取图片 base64
                     img_base64 = ""
-                    if "cover" in act and os.path.exists(act["cover"]):
-                        with open(act["cover"], "rb") as img_file:
-                            img_base64 = base64.b64encode(img_file.read()).decode()
-                    
-                    # 如果没有图，活动板块我给你配了一个暖色调的渐变占位图
-                    img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>'
+                    if act.get("cover") and os.path.exists(act["cover"]):
+                        try:
+                            with open(act["cover"], "rb") as img_file:
+                                img_base64 = base64.b64encode(img_file.read()).decode()
+                        except:
+                            img_base64 = ""
 
-                    # ✅ 修正 4：把 HTML 里的字典键换成活动专属的 status, desc
-                    # 动态按钮文字：如果是"报名中"，显示"点击报名"，否则显示"查看详情"
-                    btn_text = "立即报名 ↗" if act['status'] == "报名中" else "查看详情 ↗"
-                    
+                    # 图片 HTML（如果没有图片就用渐变占位图）
+                    img_html = (
+                        f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" style="width:100%; border-radius:10px;">'
+                        if img_base64 else
+                        '<div style="width:100%; height:200px; border-radius:10px; background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>'
+                    )
+
+                    # 按钮文字
+                    status = act.get('status', '未定义')
+                    btn_text = "立即报名 ↗" if status == "报名中" else "查看详情 ↗"
+
+                    # 多行描述处理：使用 white-space: pre-line
+                    desc = act.get('desc', '')
                     st.markdown(f"""
-                    <div class="apple-card">
-                        <div class="card-img-container">
-                            {img_html}
-                        </div>
-                        <div class="card-content">
-                            <div class="card-title">{act['title']}</div>
-                            <div class="card-meta">📅 {act['date']} ｜ 📌 {act['status']}</div>
-                            <div class="card-summary">{act['desc']}</div>
-                            <a href="{act.get('url', '#')}" target="_blank" class="apple-btn">{btn_text}</a>
-                        </div>
+                    <div style="
+                        border:1px solid #eee; 
+                        border-radius:10px; 
+                        padding:15px; 
+                        margin-bottom:20px; 
+                        box-shadow:0 4px 6px rgba(0,0,0,0.1);
+                    ">
+                        <div style="text-align:center;margin-bottom:10px;">{img_html}</div>
+                        <h3 style="margin-bottom:5px;">{act.get('title', '无标题')}</h3>
+                        <p style="color:#555;font-size:14px;">📅 {act.get('date','未知日期')} | 📌 {status}</p>
+                        <p style="white-space: pre-line; font-size:14px; color:#333;">{desc}</p>
+                        <a href="{act.get('url','#')}" target="_blank" style="
+                            display:inline-block;
+                            padding:8px 16px;
+                            background-color:#007bff;
+                            color:white;
+                            border-radius:5px;
+                            text-decoration:none;
+                            margin-top:5px;
+                        ">{btn_text}</a>
                     </div>
                     """, unsafe_allow_html=True)
 
