@@ -10,52 +10,145 @@ from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 st.markdown("""
 <style>
 
-.mag-card{
-    background:white;
-    border-radius:24px;
+.mag-hero{
+    position:relative;
+    padding:60px;
+    border-radius:32px;
     overflow:hidden;
-    box-shadow:0 12px 30px rgba(0,0,0,.08);
-    margin-bottom:30px;
-    transition:.3s;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(15,23,42,.95),
+        rgba(30,64,175,.90)
+    );
+
+    color:white;
+    margin-bottom:40px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.15);
 }
 
-.mag-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 20px 40px rgba(0,0,0,.15);
-}
-
-.mag-title{
-    font-size:28px;
+.mag-hero h1{
+    color:white !important;
+    font-size:58px;
     font-weight:800;
-    color:#1e293b;
     margin-bottom:10px;
 }
 
-.mag-meta{
+.mag-hero p{
+    font-size:20px;
+    opacity:.85;
+}
+
+.mag-card{
+    overflow:hidden;
+
+    border-radius:30px;
+
+    background:white;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+    margin-bottom:40px;
+}
+
+.mag-card:hover{
+    transform:
+    translateY(-10px)
+    scale(1.02);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.18);
+}
+
+.mag-cover{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+}
+
+.mag-content{
+    padding:28px;
+}
+
+.mag-date{
     color:#64748b;
     font-size:14px;
-    margin-bottom:15px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.mag-title{
+    font-size:32px;
+    font-weight:800;
+    color:#0f172a;
+    line-height:1.3;
+    margin-top:10px;
 }
 
 .mag-summary{
-    font-size:16px;
-    line-height:1.8;
+    margin-top:18px;
     color:#475569;
+    line-height:1.8;
+    font-size:16px;
 }
 
-.read-btn{
-    display:inline-block;
-    background:#2563eb;
-    color:white !important;
-    padding:10px 20px;
-    border-radius:12px;
-    text-decoration:none;
-    margin-top:20px;
+.mag-author{
+    margin-top:18px;
+    color:#1e293b;
     font-weight:600;
 }
 
-.read-btn:hover{
-    background:#1d4ed8;
+.mag-btn{
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:
+    12px 24px;
+
+    border-radius:999px;
+
+    text-decoration:none !important;
+
+    color:white !important;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.mag-btn:hover{
+    transform:scale(1.05);
+}
+
+.mag-category{
+    display:inline-block;
+
+    padding:
+    8px 16px;
+
+    border-radius:999px;
+
+    background:#eef2ff;
+
+    color:#4338ca;
+
+    font-weight:700;
+
+    margin-bottom:20px;
 }
 
 </style>
@@ -234,20 +327,28 @@ with tab2:
 # ----------------- 标签页 3：推文 -----------------
 with tab3:
 
-    st.markdown("# 📚 往期精选推文")
-
-    st.markdown(
-        "这里收藏着南京大学地理协会过去几年最受欢迎的内容。"
-    )
+    st.markdown("""
+    <div class="mag-hero">
+        <h1>地理无界 Magazine</h1>
+        <p>
+        Geography · Culture · Landscape · Civilization
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
     category = st.selectbox(
         "选择专栏",
         list(ARTICLE_DATA.keys())
     )
 
+    st.markdown(
+        f'<div class="mag-category">{category}</div>',
+        unsafe_allow_html=True
+    )
+
     articles = ARTICLE_DATA[category]
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2, gap="large")
 
     for i, art in enumerate(articles):
 
@@ -265,28 +366,32 @@ with tab3:
             st.markdown(f"""
             <div class="mag-card">
 
-            <div style="padding:28px">
+                <div class="mag-content">
 
-            <div class="mag-title">
-            {art['title']}
-            </div>
+                    <div class="mag-date">
+                    {art["date"]}
+                    </div>
 
-            <div class="mag-meta">
-             {art['author']} ｜  {art['date']}
-            </div>
+                    <div class="mag-title">
+                    {art["title"]}
+                    </div>
 
-            <div class="mag-summary">
-            {art['summary']}
-            </div>
+                    <div class="mag-author">
+                    作者 · {art["author"]}
+                    </div>
 
-            <a
-            href="{art['url']}"
-            target="_blank"
-            class="read-btn">
-            阅读全文 →
-            </a>
+                    <div class="mag-summary">
+                    {art["summary"]}
+                    </div>
 
-            </div>
+                    <a
+                    href="{art["url"]}"
+                    target="_blank"
+                    class="mag-btn">
+                    阅读全文 →
+                    </a>
+
+                </div>
 
             </div>
             """, unsafe_allow_html=True)
