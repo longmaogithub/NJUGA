@@ -272,7 +272,7 @@ with tab3:
             </div>
 
             <div class="mag-meta">
-            ✍ {art['author']} ｜ 📅 {art['date']}
+             {art['author']} ｜  {art['date']}
             </div>
 
             <div class="mag-summary">
