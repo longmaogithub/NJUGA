@@ -177,32 +177,49 @@ with tab2:
             if act['status'] == "报名中":
                 st.button("🔗 点击前往报名表单", key=act['title']) 
 
-# ----------------- 标签页 3：相关推文 -----------------
+# ----------------- 标签页 3：相关推文（杂志风） -----------------
 with tab3:
-
     st.header("📚 往期精选推文")
+    st.markdown("在这里，你可以按专栏浏览我们过去沉淀的优质内容。")
 
+    # 选择专栏
     category = st.selectbox(
         "选择专栏",
-        ARTICLE_DATA.keys()
+        list(ARTICLE_DATA.keys())
     )
 
     articles = ARTICLE_DATA[category]
 
-    for art in articles:
+    # 双列布局
+    col1, col2 = st.columns(2, gap="large")
 
-        with st.container(border=True):
+    for i, art in enumerate(articles):
+        target_col = col1 if i % 2 == 0 else col2
 
-            st.markdown(f"### {art['title']}")
-            st.caption(f"作者：{art['author']}")
-            st.caption(f"{art['date']}")
-            st.write(art['summary'])
-
-            if "url" in art:
-                st.link_button(
-                    "📖 阅读原文",
-                    art["url"]
-                )
+        with target_col:
+            st.markdown(f"""
+            <div style="
+                border-radius:15px;
+                padding:20px;
+                margin-bottom:20px;
+                background: linear-gradient(135deg, #fef3c7, #fde68a);
+                box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            ">
+                {"<img src='" + art['url_image'] + "' width='100%' style='border-radius:10px; margin-bottom:10px;'>" if "url_image" in art else ""}
+                <h3 style="color:#92400e;">{art['title']}</h3>
+                <p style="font-size:14px; color:#78350f;"><strong>作者：</strong>{art['author']}</p>
+                <p style="font-size:16px; color:#78350f;">{art['summary']}</p>
+                <a href="{art['url']}" target="_blank" style="
+                    display:inline-block;
+                    padding:6px 12px;
+                    background:#92400e;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:5px;
+                    margin-top:10px;
+                ">阅读全文 →</a>
+            </div>
+            """, unsafe_allow_html=True)
 
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:

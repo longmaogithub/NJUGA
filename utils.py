@@ -20,14 +20,16 @@ ARTICLE_DATA = {
             "author": "王瓯", 
             "date":"2026年4月9日",
             "summary": "形散而神不散，才是这片被嶙峋地形、曲折水道所切割的土地的状态。本文从地理视角带你重新认识温州。",
-            "url": "https://mp.weixin.qq.com/s/076ZCx_8UUuihcRr7U8f4w" 
+            "url": "https://mp.weixin.qq.com/s/076ZCx_8UUuihcRr7U8f4w",
+            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
         },
         {
             "title": "从南大出发，探寻中国最美丹霞地貌", 
             "author": "宣传部", 
             "date":"2026年4月9日",
             "summary": "本期推文带你走进张掖，用地理学的视角解构色彩斑斓的丹霞奇观...",
-            "url": "https://mp.weixin.qq.com/"
+            "url": "https://mp.weixin.qq.com/",
+            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
         }
     ],
     "💻 GIS 技能工坊": [
@@ -36,7 +38,8 @@ ARTICLE_DATA = {
             "author": "学术部", 
             "date":"2026年4月9日",
             "summary": "很多同学问如何画出高大上的地图？本期手把手教你安装和使用 ArcGIS...",
-            "url": "https://mp.weixin.qq.com/"
+            "url": "https://mp.weixin.qq.com/",
+            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
         }
     ],
     "👣 行走南大 (活动回顾)": [
@@ -45,7 +48,8 @@ ARTICLE_DATA = {
             "author": "活动部", 
             "date":"2026年4月9日",
             "summary": "上周末，我们和百名南大同学一起登顶紫金山，来看前方发回的绝美照片！",
-            "url": "https://mp.weixin.qq.com/"
+            "url": "https://mp.weixin.qq.com/",
+            "url_image": "https://mmbiz.qpic.cn/mmbiz_jpg/ODzib5gpRWTxqdcPr1Bpkb4D6frzMVFRllWzPFcCzo6sYia0Izwia7JbdI2eJzLePpkvgz7ajbs6NcYlOsaZN4CianYqmI7yLv6skJPAkxKRDw4/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
         }
     ]
 }
