@@ -7,6 +7,27 @@ from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 # ==========================================
 # 1. 页面配置 
 # ==========================================
+st.markdown("""
+<style>
+
+.stApp{
+    background: linear-gradient(
+        180deg,
+        #fafafa 0%,
+        #f5f7fb 100%
+    );
+}
+
+h1{
+    color:#1f3b73;
+}
+
+h2{
+    color:#234a8f;
+}
+
+</style>
+""", unsafe_allow_html=True)
 st.set_page_config(
     page_title="南京大学地理协会",
     page_icon="🌍",
@@ -45,8 +66,32 @@ with st.sidebar:
 # ==========================================
 # 4. 主界面：三选项卡 (Tabs) 排版设计
 # ==========================================
-st.title("南京大学地理协会")
-st.markdown("地理无界 世界相连")
+st.markdown("""
+<div style="
+padding:40px;
+border-radius:25px;
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#1e3a8a,
+#2563eb
+);
+color:white;
+">
+
+<h1>🌍 南京大学地理协会</h1>
+
+<h4>
+地理无界 · 世界相连
+</h4>
+
+<p>
+丈量祖国大地，普及地理科学
+</p>
+
+</div>
+""", unsafe_allow_html=True)
 
 # ==========================================
 # 4. 主界面：四选项卡 (Tabs) 排版设计
