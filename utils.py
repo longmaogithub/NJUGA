@@ -147,6 +147,8 @@ def get_association_knowledge_base() -> str:
     else:
         for act in ACTIVITY_DATA:
             kb += f"- 活动名称：{act['title']}\n  举办时间：{act['date']}\n  当前状态：{act['status']}\n  详细介绍：{act['desc']}\n"
+            if "url" in art:
+                    kb += f"  原文链接：{art['url']}\n"
             
     # 👇 修改了这里：让 AI 知道推文是分了专栏的
     kb += "\n【往期精选推文（已分类，如果同学问起相关资料，请把链接直接发给他们）】：\n"
