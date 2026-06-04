@@ -135,30 +135,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<div style="
-    position: relative;
-    padding:50px;
-    border-radius:24px;
-    background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80') center/cover;
-    color:white;
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
-    margin-bottom: 30px;
-">
-    <h1 style="font-size: 48px; font-weight: 800; margin-bottom: 10px;">🌍 南京大学地理协会</h1>
-    <h3 style="font-weight: 400; color: #f5f5f7; margin-bottom: 20px;">地理无界 · 世界相连</h3>
-    <div style="
-        background: rgba(255,255,255,0.7);
-        color: #1d1d1f;
-        padding: 15px 20px;
-        border-radius: 16px;
-        display: inline-block;
-        font-size: 18px;
-    ">
-        文量祖国大地 · 普及地理科学
-    </div>
-</div>
-""", unsafe_allow_html=True)
+
 
 st.markdown("""
 <style>
@@ -288,7 +265,7 @@ color:white;
 box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
 margin-bottom: 30px;
 ">
-<h1 style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 10px;">🌍 南京大学地理协会</h1>
+<h1 style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 10px;">南京大学地理协会</h1>
 <h3 style="font-weight: 400; color: #f5f5f7;">地理无界 · 世界相连</h3>
 <p style="font-size: 18px; color: #d2d2d7; margin-top: 20px;">丈量祖国大地，普及地理科学</p>
 </div>
