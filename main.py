@@ -246,11 +246,6 @@ api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 # 3. 侧边栏：版权信息 & 导航提示
 # ==========================================
 with st.sidebar:
-    st.image("slogan.png", width=240)
-    st.title("🎓 创作者版权信息")
-    st.info("南京大学 安邦书院\n")
-    st.success("\n- 251830038 杨宝鑫\n- 251830056 陈琪睿\n- 251200015 张跃恒")
-    st.markdown("---")
     st.markdown("💡 **Tip**: 欢迎体验右侧的 `AI 智能答疑` 模块！它已经学习了本站的所有活动与推文信息。")
 
 # ==========================================
@@ -289,7 +284,7 @@ with tab1:
     # 社团介绍
     # =========================
 
-    st.markdown("## ✨ 欢迎来到 NJUGA")
+    st.markdown("## ✨ 欢迎来到南京大学地理协会")
 
     col1, col2 = st.columns([2,1])
 
@@ -311,7 +306,7 @@ with tab1:
     with col2:
         st.markdown("""
         <div class="stat-card">
-            <div class="stat-number">100+</div>
+            <div class="stat-number">30+</div>
             <div class="stat-label">协会成员</div>
         </div>
         """, unsafe_allow_html=True)
@@ -320,10 +315,66 @@ with tab1:
 
         st.markdown("""
         <div class="stat-card">
-            <div class="stat-number">30+</div>
-            <div class="stat-label">实地活动</div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label">活动群人数</div>
         </div>
         """, unsafe_allow_html=True)
+
+    st.divider()
+
+# =========================
+    # 图集
+    # =========================
+
+    st.markdown("## 📸 图集 Gallery")
+    st.caption("过去一年，我们走过的地方")
+
+    g1,g2,g3 = st.columns(3)
+
+    with g1:
+        st.image(
+            "images/wenzhou.jpg",
+            use_container_width=True
+        )
+
+        st.caption("玄武湖")
+
+        st.image(
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            use_container_width=True
+        )
+
+        st.caption("钟山")
+
+    with g2:
+        st.image(
+            "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+            use_container_width=True
+        )
+
+        st.caption("浦口铁路")
+
+        st.image(
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
+            use_container_width=True
+        )
+
+        st.caption("雨花台")
+
+    with g3:
+        st.image(
+            "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+            use_container_width=True
+        )
+
+        st.caption("苏州")
+
+        st.image(
+            "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+            use_container_width=True
+        )
+
+        st.caption("宁夏")
 
     st.divider()
 
@@ -378,62 +429,7 @@ with tab1:
 
     st.divider()
 
-    # =========================
-    # 图集
-    # =========================
-
-    st.markdown("## 📸 图集 Gallery")
-    st.caption("过去一年，我们走过的地方")
-
-    g1,g2,g3 = st.columns(3)
-
-    with g1:
-        st.image(
-            "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
-            use_container_width=True
-        )
-
-        st.caption("玄武湖")
-
-        st.image(
-            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-            use_container_width=True
-        )
-
-        st.caption("钟山")
-
-    with g2:
-        st.image(
-            "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-            use_container_width=True
-        )
-
-        st.caption("浦口铁路")
-
-        st.image(
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
-            use_container_width=True
-        )
-
-        st.caption("雨花台")
-
-    with g3:
-        st.image(
-            "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-            use_container_width=True
-        )
-
-        st.caption("苏州")
-
-        st.image(
-            "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-            use_container_width=True
-        )
-
-        st.caption("宁夏")
-
-    st.divider()
-
+    
     # =========================
     # 加入我们
     # =========================
@@ -456,6 +452,24 @@ st.markdown("""
         只要对土地、城市与世界保持好奇，<br>
         我们都欢迎你加入。
     </p>
+</div>
+""", unsafe_allow_html=True)
+
+# ----------------- 页面底部版权信息 -----------------
+st.markdown("""
+<div style="
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    border-top: 1px solid #eee;
+    margin-top: 60px;
+">
+    <img src='slogan.png' width='120' style='margin-bottom:10px;'/><br>
+    南京大学 安邦书院<br>
+    251830038 杨宝鑫 | 251830056 陈琪睿 | 251200015 张跃恒<br>
+    &copy; 2026 南京大学地理协会. 保留所有权利
 </div>
 """, unsafe_allow_html=True)
 
