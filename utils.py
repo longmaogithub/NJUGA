@@ -51,7 +51,7 @@ ARTICLE_DATA = {
             "date": "2026年3月21日",
             "summary": "这座城市还有很多图层没被打开。而我们，需要更多一起解锁它的人。",
             "url": "https://mp.weixin.qq.com/s/vwoKFLhsnK5h8-hAxUS9UA",
-            "cover": "2026春季招新：一起解锁南京的图层.jpg"
+            "cover": "images/2026春季招新：一起解锁南京的图层.jpg"
         }
     ],
 
@@ -61,8 +61,8 @@ ARTICLE_DATA = {
             "author": "金华",
             "date": "2026年4月18日",
             "summary": "我们面向全校师生发起「我的地理书单」全校征集，以书为媒，汇聚南大人的地理热爱，让每一本好书，都成为照亮山河的微光。",
-            "url": "https://mp.weixin.qq.com/s/vM2NlAf6RJGLBB3CsKWphQ",
-            "cover": "读万卷书，行万里路”——“全民阅读活动周”主题分享会.jpg"
+            "url": "https://mp.weixin.qq.com/s/sVtaJFXWv9m6_RIcysFO7g",
+            "cover": "images/读万卷书，行万里路”——“全民阅读活动周”主题分享会.jpg"
         },
 
         {
@@ -70,8 +70,8 @@ ARTICLE_DATA = {
             "author": "南京大学地理协会",
             "date": "2026年4月15日",
             "summary": "恰逢第31个“世界读书日”与首个“全民阅读活动周”，在地理与海洋科学学院团委指导下，南京大学学生地理协会落地 “阅见经纬”共享图书角，并重磅推出“读万卷书，行万里路”全民阅读活动周主题分享会。",
-            "url": "https://mp.weixin.qq.com/s/sVtaJFXWv9m6_RIcysFO7g",
-            "cover": "纸上山河：快来pick你最喜欢的地理书吧.jpg"
+            "url": "https://mp.weixin.qq.com/s/vM2NlAf6RJGLBB3CsKWphQ",
+            "cover": "images/纸上山河：快来pick你最喜欢的地理书吧.jpg"
         }
 
         
