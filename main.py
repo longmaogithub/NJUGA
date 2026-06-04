@@ -141,8 +141,7 @@ with tab3:
             st.markdown(f"#### {art['title']}")
             st.caption(f"✍️ 作者: {art['author']}")
             st.write(art['summary'])
-            # 增加一个模拟的阅读按钮
-            st.link_button("📖 阅读原文", key=art['title']+"_btn")
+            st.link_button("📖 阅读原文", url=art['title']+"_btn")
 
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
