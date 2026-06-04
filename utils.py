@@ -52,10 +52,40 @@ NJUGA_CORE_KNOWLEDGE = """
 
 def get_association_knowledge_base() -> str:
     """
-    组装喂给 AI 的提示词
+    组装喂给 AI 的提示词 (动态组装版)
     """
+    # 1. 基础人设与静态长文知识库
     kb = "你现在是南京大学地理协会(NJUGA)的官方AI智能答疑小助手。\n"
     kb += "你的任务是热情、准确地回答同学们关于协会的提问。你的语气应该像一个亲切的学长/学姐。\n"
     kb += "以下是关于协会的全部权威信息。当同学问及相关内容时，请基于以下信息进行解答：\n\n"
     kb += NJUGA_CORE_KNOWLEDGE
+    
+    # ==========================================
+    # 核心魔法：让程序自动读取上面的字典，翻译给 AI 听
+    # ==========================================
+    
+    # 2. 自动注入【最新活动】数据
+    kb += "\n\n【最新动态与活动通知（重要！）】：\n"
+    if not ACTIVITY_DATA:
+        kb += "当前暂无最新活动。\n"
+    else:
+        for act in ACTIVITY_DATA:
+            kb += f"- 活动名称：{act['title']}\n"
+            kb += f"  举办时间：{act['date']}\n"
+            kb += f"  当前状态：{act['status']}\n"
+            kb += f"  详细介绍：{act['desc']}\n"
+            
+    # 3. 自动注入【往期推文】数据 (附带链接，让 AI 可以直接发给用户)
+    kb += "\n【往期精选推文（如果同学问起相关资料，请把链接直接发给他们）】：\n"
+    if not ARTICLE_DATA:
+        kb += "当前暂无推文。\n"
+    else:
+        for art in ARTICLE_DATA:
+            kb += f"- 推文标题：《{art['title']}》\n"
+            kb += f"  作者：{art['author']}\n"
+            kb += f"  摘要：{art['summary']}\n"
+            # 如果字典里有 url 字段，就告诉 AI，让 AI 能直接甩链接给用户！
+            if "url" in art:
+                kb += f"  原文链接：{art['url']}\n"
+                
     return kb
