@@ -438,27 +438,27 @@ with tab1:
     # 加入我们
     # =========================
 
-    st.markdown("""
-    <div class="join-box">
-        <div class="join-title">
-        Ready to Explore?
-        </div>
-
-        <br>
-
-        <div class="join-text">
-        无论你来自什么专业，
-        只要对土地、城市与世界保持好奇，
+    # ----------------- 首页结尾：加入炫酷邀请横幅 -----------------
+st.markdown("""
+<div style="
+    width: 100%;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0071e3, #00d4ff);
+    padding: 60px 30px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+">
+    <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 20px;">Ready to Explore?</h2>
+    <p style="font-size: 18px; line-height: 1.8; max-width: 700px; margin: 0 auto;">
+        无论你来自什么专业，<br>
+        只要对土地、城市与世界保持好奇，<br>
         我们都欢迎你加入。
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
-    st.success("""
-🌍 南京大学地理协会
-
-丈量祖国大地，普及地理科学。
-""")
 
 # ----------------- 标签页 2：活动通知 -----------------
 
