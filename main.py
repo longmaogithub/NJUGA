@@ -134,27 +134,30 @@ with tab2:
 
 # ----------------- 标签页 3：相关推文 -----------------
 with tab3:
-    st.header("📚 往期精选推文", anchor=False)
-    st.markdown("在这里，你可以按专栏浏览我们过去沉淀的优质内容。")
-    st.markdown("---")
-    
-    # 核心逻辑：遍历字典里的每一个分类
-    for category, articles in ARTICLE_DATA.items():
-        
-        # 1. 打印专栏的大标题
-        st.subheader(category, anchor=False)
-        
-        # 2. 打印这个专栏下的所有文章
-        for art in articles:
-            with st.container(border=True):
-                st.markdown(f"#### {art['title']}")
-                st.caption(f"✍️ 作者: {art['author']}")
-                st.write(art['summary'])
-                if "url" in art:
-                    st.link_button("📖 阅读原文", url=art["url"])
-                    
-        # 3. 在每个专栏画完之后，加一条灰色的分割线，显得更清爽
-        st.divider()
+
+    st.header("📚 往期精选推文")
+
+    category = st.selectbox(
+        "选择专栏",
+        ARTICLE_DATA.keys()
+    )
+
+    articles = ARTICLE_DATA[category]
+
+    for art in articles:
+
+        with st.container(border=True):
+
+            st.markdown(f"### {art['title']}")
+            st.caption(f"✍️ 作者：{art['author']}")
+
+            st.write(art['summary'])
+
+            if "url" in art:
+                st.link_button(
+                    "📖 阅读原文",
+                    art["url"]
+                )
 
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
