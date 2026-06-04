@@ -199,10 +199,17 @@ with tab3:
         with target_col:
             # 显示本地封面图
             if "url_image" in art:
-                st.image(
-                    art["url_image"], 
-                    use_column_width=True
-                )
+                import os
+
+                img_path = art.get("url_image")
+
+                if img_path and os.path.exists(img_path):
+                    st.image(
+                        img_path,
+                        use_container_width=True
+                    )
+                else:
+                     st.warning(f"图片不存在：{img_path}")
 
             # 杂志风卡片信息
             st.markdown(f"""
