@@ -46,11 +46,12 @@ class ReviewAssistantAPI:
                 "error_msg": f"接口调用失败: {str(e)}"
             }
 
-    # 这是全新的打字机流式方法
+    # zhipu_api.py 里的流式输出函数替换为以下版本
+
     def generate_stream_response(self, messages: list):
         """
-        【高级功能：流式输出】
-        开启 stream=True，让 AI 像打字机一样一个字一个字返回
+        【高级功能：流式输出 + 实时联网搜索】
+        开启 stream=True，并注入 web_search 工具
         """
         optimized_messages = self.optimize_chat_history(messages)
         try:
@@ -59,7 +60,9 @@ class ReviewAssistantAPI:
                 messages=optimized_messages,
                 max_tokens=800, 
                 temperature=0.5,
-                stream=True  # 核心魔法在这里
+                stream=True,
+                # 👇 核心魔法：赐予 AI 联网搜索的能力！ 👇
+                tools=[{"type": "web_search", "web_search": {"enable": True, "search_result": True}}]
             )
             return response
         except Exception as e:
