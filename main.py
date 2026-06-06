@@ -437,44 +437,45 @@ with tab1:
     # =========================
 
     # ==========================================
+# ==========================================
 # 底部招募卡片 (Ready to Explore)
 # ==========================================
 st.markdown(f"""
-<div style="position: relative; background: linear-gradient(145deg, #0f172a, #1a1a2e, #2d2a4a); border-radius: 24px; padding: clamp(30px, 5vw, 50px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; margin-top: 20px;">
+<div style="box-sizing: border-box; width: 100%; position: relative; background: linear-gradient(145deg, #0f172a, #1a1a2e, #2d2a4a); border-radius: 24px; padding: clamp(25px, 5vw, 50px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; margin-top: 20px;">
 <!-- 背景炫光特效 (右上角的紫色光晕) -->
 <div style="position: absolute; top: -50px; right: -20px; width: 250px; height: 250px; background: #7c3aed; filter: blur(90px); opacity: 0.4; border-radius: 50%;"></div>
 <div style="position: absolute; bottom: -50px; left: -20px; width: 200px; height: 200px; background: #2563eb; filter: blur(80px); opacity: 0.3; border-radius: 50%;"></div>
 
 <!-- 左侧：文案区 -->
-<div style="flex: 1; min-width: 260px; z-index: 1;">
-<h2 style="margin: 0 0 15px 0; font-size: clamp(32px, 5vw, 46px); font-weight: 800; background: linear-gradient(90deg, #c4b5fd, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ready to Explore?</h2>
-<p style="color: #cbd5e1; font-size: 20px; line-height: 1.8; margin: 0; font-weight: 400;">无论你来自什么专业，<br>只要对土地、城市与世界保持好奇，<br>我们都欢迎你加入。</p>
+<div style="flex: 1 1 250px; max-width: 100%; box-sizing: border-box; z-index: 1;">
+<h2 style="margin: 0 0 15px 0; font-size: clamp(26px, 8vw, 46px); font-weight: 800; background: linear-gradient(90deg, #c4b5fd, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; word-break: break-word;">Ready to Explore?</h2>
+<p style="color: #cbd5e1; font-size: 16px; line-height: 1.8; margin: 0; font-weight: 400; word-break: break-word;">无论你来自什么专业，<br>只要对土地、城市与世界保持好奇，<br>我们都欢迎你加入。</p>
 </div>
 
 <!-- 右侧：联系方式卡片区 -->
-<div style="flex: 1; min-width: 260px; z-index: 1; display: flex; flex-direction: column; gap: 12px;">
+<div style="flex: 1 1 250px; max-width: 100%; box-sizing: border-box; z-index: 1; display: flex; flex-direction: column; gap: 12px;">
 
-<div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
-<span style="font-size: 20px; margin-right: 15px;">💬</span>
-<div style="display: flex; flex-direction: column;">
-<span style="color: #94a3b8; font-size: 16px; font-weight: 600;">活动 QQ 群</span>
-<span style="color: #ffffff; font-size: 20px; font-weight: 700;">720915627</span>
-</div>
-</div>
-
-<div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
-<span style="font-size: 20px; margin-right: 15px;">📱</span>
-<div style="display: flex; flex-direction: column;">
-<span style="color: #94a3b8; font-size: 16px; font-weight: 600;">微信公众号</span>
-<span style="color: #ffffff; font-size: 20px; font-weight: 700;">山河南观</span>
+<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">💬</span>
+<div style="display: flex; flex-direction: column; overflow: hidden;">
+<span style="color: #94a3b8; font-size: 12px; font-weight: 600; white-space: nowrap;">官方招新 QQ 群</span>
+<span style="color: #ffffff; font-size: 16px; font-weight: 700; word-break: break-all;">720915627</span>
 </div>
 </div>
 
-<div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
-<span style="font-size: 20px; margin-right: 15px;">📕</span>
-<div style="display: flex; flex-direction: column;">
-<span style="color: #94a3b8; font-size: 16px; font-weight: 600;">小红书账号</span>
-<span style="color: #ffffff; font-size: 20px; font-weight: 700;">南大地理协会</span>
+<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📱</span>
+<div style="display: flex; flex-direction: column; overflow: hidden;">
+<span style="color: #94a3b8; font-size: 12px; font-weight: 600; white-space: nowrap;">微信公众号</span>
+<span style="color: #ffffff; font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">山河南观</span>
+</div>
+</div>
+
+<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📕</span>
+<div style="display: flex; flex-direction: column; overflow: hidden;">
+<span style="color: #94a3b8; font-size: 12px; font-weight: 600; white-space: nowrap;">小红书账号</span>
+<span style="color: #ffffff; font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">南大地理协会</span>
 </div>
 </div>
 
