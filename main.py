@@ -361,12 +361,7 @@ with tab1:
 
         st.caption("温州")
 
-        st.image(
-            "images/午朝门.jpg",
-            use_container_width=True
-        )
-
-        st.caption("午朝门")
+        
 
     with g2:
         st.image(
@@ -376,27 +371,14 @@ with tab1:
 
         st.caption("星光集市")
 
-        st.image(
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
-            use_container_width=True
-        )
-
-        st.caption("测试图片")
-
+       
     with g3:
         st.image(
-            "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+            "images/午朝门.jpg",
             use_container_width=True
         )
 
-        st.caption("测试图片")
-
-        st.image(
-            "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-            use_container_width=True
-        )
-
-        st.caption("测试图片")
+        st.caption("午朝门")
 
     st.divider()
 
