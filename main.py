@@ -263,7 +263,7 @@ st.markdown("""
 <div style="
 padding:50px;
 border-radius:24px;
-background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80') center/cover;
+background: url('slogan.png') center/cover;
 color:white;
 box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
 margin-bottom: 30px;
