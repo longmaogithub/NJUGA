@@ -261,8 +261,8 @@ api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 # ==========================================
 # 1. 先把本地的 slogan.png 转成 Base64 编码
 banner_img_base64 = ""
-if os.path.exists("slogan.png"):
-    with open("slogan.png", "rb") as img_file:
+if os.path.exists("logo.png"):
+    with open("logo.png", "rb") as img_file:
         banner_img_base64 = base64.b64encode(img_file.read()).decode()
 
 # 2. 动态生成包含 Base64 图片的背景代码 (注意最外层改成了 f"" f-string 格式)
@@ -280,7 +280,6 @@ box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
 margin-bottom: 30px;
 ">
 <h1 style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 10px;">南京大学地理协会</h1>
-<h3 style="font-weight: 400; color: #f5f5f7;">地理无界 · 世界相连</h3>
 """, unsafe_allow_html=True)
 
 # ==========================================
@@ -478,6 +477,8 @@ st.markdown("""
     border-top: 1px solid #eee;
     margin-top: 60px;
 ">
+    南京大学 安邦书院<br>
+    251830038 杨宝鑫 | 251830056 陈琪睿 | 251200015 张跃恒<br>
     &copy; 2026 南京大学地理协会. 保留所有权利
 </div>
 """, unsafe_allow_html=True)
