@@ -467,24 +467,24 @@ st.markdown(f"""
 <div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">💬</span>
 <div style="display: flex; flex-direction: column; overflow: hidden;">
-<span style="color: #94a3b8; font-size: 12px; font-weight: 600; white-space: nowrap;">官方招新 QQ 群</span>
-<span style="color: #ffffff; font-size: 16px; font-weight: 700; word-break: break-all;">720915627</span>
+<span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">活动 QQ 群</span>
+<span style="color: #ffffff; font-size: 20px; font-weight: 700; word-break: break-all;">720915627</span>
 </div>
 </div>
 
 <div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📱</span>
 <div style="display: flex; flex-direction: column; overflow: hidden;">
-<span style="color: #94a3b8; font-size: 12px; font-weight: 600; white-space: nowrap;">微信公众号</span>
-<span style="color: #ffffff; font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">山河南观</span>
+<span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">微信公众号</span>
+<span style="color: #ffffff; font-size: 20px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">山河南观</span>
 </div>
 </div>
 
 <div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📕</span>
 <div style="display: flex; flex-direction: column; overflow: hidden;">
-<span style="color: #94a3b8; font-size: 12px; font-weight: 600; white-space: nowrap;">小红书账号</span>
-<span style="color: #ffffff; font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">南大地理协会</span>
+<span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">小红书账号</span>
+<span style="color: #ffffff; font-size: 20px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">南大地理协会</span>
 </div>
 </div>
 
