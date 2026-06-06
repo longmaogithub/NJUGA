@@ -256,7 +256,28 @@ if not ZHIPU_API_KEY:
 api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 
 
+# ==========================================
+# 4. 主界面：大横幅 (Banner)
+# ==========================================
+# 1. 读取本地 logo.png 转成 Base64
+banner_img_base64 = ""
+if os.path.exists("logo.png"):
+    with open("logo.png", "rb") as img_file:
+        banner_img_base64 = base64.b64encode(img_file.read()).decode()
 
+img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width: clamp(100px, 15vw, 160px); height: auto; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">""" if banner_img_base64 else ""
+
+# 2. 渲染弹性布局 (Flexbox) 横幅
+# ⚠️ 注意：下面的 HTML 代码绝对不能有任何空格缩进，必须顶格写！
+st.markdown(f"""
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(20px, 4vw, 40px); padding: clamp(30px, 5vw, 50px); border-radius: 24px; background: linear-gradient(135deg, #2c1a3b, #110a17); margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+{img_html}
+<div style="text-align: center; min-width: 260px;">
+<h1 style="font-size: clamp(30px, 6vw, 48px); font-weight: 800; color: #ffffff; margin: 0 0 10px 0; line-height: 1.2;">南京大学地理协会</h1>
+<h3 style="font-size: clamp(18px, 4vw, 24px); font-weight: 400; color: #d1c4e9; margin: 0;">地理无界 · 世界相连</h3>
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 # ==========================================
 # 5. 主界面：四选项卡 (Tabs) 排版设计
