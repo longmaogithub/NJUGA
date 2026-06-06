@@ -436,27 +436,49 @@ with tab1:
     # 加入我们
     # =========================
 
-    # ----------------- 首页结尾：加入炫酷邀请横幅 -----------------
-st.markdown("""
-<div style="
-    width: 100%;
-    border-radius: 24px;
-    background: linear-gradient(135deg, #0071e3, #00d4ff);
-    padding: 60px 30px;
-    text-align: center;
-    color: white;
-    margin-top: 40px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-">
-    <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 20px;">Ready to Explore?</h2>
-    <p style="font-size: 18px; line-height: 1.8; max-width: 700px; margin: 0 auto;">
-        无论你来自什么专业，<br>
-        只要对土地、城市与世界保持好奇，<br>
-        我们都欢迎你加入。<br>
-        活动QQ群：720915627 <br>
-        公众号：山河南观<br>
-        小红书：南大地理协会
-    </p>
+    # ==========================================
+# 底部招募卡片 (Ready to Explore)
+# ==========================================
+st.markdown(f"""
+<div style="position: relative; background: linear-gradient(145deg, #0f172a, #1a1a2e, #2d2a4a); border-radius: 24px; padding: clamp(30px, 5vw, 50px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; margin-top: 20px;">
+<!-- 背景炫光特效 (右上角的紫色光晕) -->
+<div style="position: absolute; top: -50px; right: -20px; width: 250px; height: 250px; background: #7c3aed; filter: blur(90px); opacity: 0.4; border-radius: 50%;"></div>
+<div style="position: absolute; bottom: -50px; left: -20px; width: 200px; height: 200px; background: #2563eb; filter: blur(80px); opacity: 0.3; border-radius: 50%;"></div>
+
+<!-- 左侧：文案区 -->
+<div style="flex: 1; min-width: 260px; z-index: 1;">
+<h2 style="margin: 0 0 15px 0; font-size: clamp(32px, 5vw, 46px); font-weight: 800; background: linear-gradient(90deg, #c4b5fd, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ready to Explore?</h2>
+<p style="color: #cbd5e1; font-size: 16px; line-height: 1.8; margin: 0; font-weight: 400;">无论你来自什么专业，<br>只要对土地、城市与世界保持好奇，<br>我们都欢迎你加入。</p>
+</div>
+
+<!-- 右侧：联系方式卡片区 -->
+<div style="flex: 1; min-width: 260px; z-index: 1; display: flex; flex-direction: column; gap: 12px;">
+
+<div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<span style="font-size: 20px; margin-right: 15px;">💬</span>
+<div style="display: flex; flex-direction: column;">
+<span style="color: #94a3b8; font-size: 12px; font-weight: 600;">官方招新 QQ 群</span>
+<span style="color: #ffffff; font-size: 16px; font-weight: 700;">720915627</span>
+</div>
+</div>
+
+<div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<span style="font-size: 20px; margin-right: 15px;">📱</span>
+<div style="display: flex; flex-direction: column;">
+<span style="color: #94a3b8; font-size: 12px; font-weight: 600;">微信公众号</span>
+<span style="color: #ffffff; font-size: 16px; font-weight: 700;">山河南观</span>
+</div>
+</div>
+
+<div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<span style="font-size: 20px; margin-right: 15px;">📕</span>
+<div style="display: flex; flex-direction: column;">
+<span style="color: #94a3b8; font-size: 12px; font-weight: 600;">小红书账号</span>
+<span style="color: #ffffff; font-size: 16px; font-weight: 700;">南大地理协会</span>
+</div>
+</div>
+
+</div>
 </div>
 """, unsafe_allow_html=True)
 
