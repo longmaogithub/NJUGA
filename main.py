@@ -497,7 +497,7 @@ st.markdown("""
     border-top: 1px solid #eee;
     margin-top: 60px;
 ">
-    
+    <br>
     &copy; 2026 南京大学地理协会. 保留所有权利
 </div>
 """, unsafe_allow_html=True)
