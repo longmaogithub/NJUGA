@@ -10,6 +10,19 @@ from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 # ==========================================
 st.markdown("""
 <style>
+       /* 添加到你的 <style> 标签内部 */
+
+/* 1. 隐藏左上角的侧边栏展开按钮 */
+[data-testid="collapsedControl"] {
+    display: none;
+}
+
+/* 2. 拓宽主界面内容区，减少上下左右的无用白边 */
+.block-container {
+    padding-top: 2rem !important; /* 减少顶部的多余留白 */
+    padding-bottom: 2rem !important;
+    max-width: 85% !important;    /* 核心魔法：让内容占据屏幕的 85%，瞬间宽敞！ */
+}     
 /* 整体背景优化 */
 .stApp {
     background: #fbfbfd; /* 苹果官网经典的极浅灰背景 */
