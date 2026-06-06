@@ -259,17 +259,29 @@ api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 # ==========================================
 # 4. 主界面：大横幅 (Banner)
 # ==========================================
-st.markdown("""
+# 1. 先把本地的 slogan.png 转成 Base64 编码
+banner_img_base64 = ""
+if os.path.exists("slogan.png"):
+    with open("slogan.png", "rb") as img_file:
+        banner_img_base64 = base64.b64encode(img_file.read()).decode()
+
+# 2. 动态生成包含 Base64 图片的背景代码 (注意最外层改成了 f"" f-string 格式)
+# 如果图片存在，就用本地图片；如果不存在，为了防止报错，给一个兜底的渐变色
+bg_css = f"url('data:image/png;base64,{banner_img_base64}') center/cover" if banner_img_base64 else "linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb)"
+
+# 3. 渲染横幅
+st.markdown(f"""
 <div style="
 padding:50px;
 border-radius:24px;
-background: url('slogan.png') center/cover;
-color:white;
+background: {bg_css};
+color:black;
 box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
 margin-bottom: 30px;
 ">
-<h1 style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 10px;">南京大学地理协会</h1>
+<h1 style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 10px;">🌍 南京大学地理协会</h1>
 <h3 style="font-weight: 400; color: #f5f5f7;">地理无界 · 世界相连</h3>
+<p style="font-size: 18px; color: #d2d2d7; margin-top: 20px;">丈量祖国大地，普及地理科学</p>
 </div>
 """, unsafe_allow_html=True)
 
