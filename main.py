@@ -256,64 +256,7 @@ if not ZHIPU_API_KEY:
 api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 
 
-# ==========================================
-# 4. 主界面：大横幅 (Banner)
-# ==========================================
-# 1. 读取本地 logo.png 转成 Base64
-banner_img_base64 = ""
-if os.path.exists("logo.png"):
-    with open("logo.png", "rb") as img_file:
-        banner_img_base64 = base64.b64encode(img_file.read()).decode()
 
-# 如果有图片，生成 img 标签；如果没有，设为空
-img_html = f"""
-<img src="data:image/png;base64,{banner_img_base64}" style="
-    width: clamp(100px, 15vw, 160px); 
-    height: auto; 
-    border-radius: 20px; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-">
-""" if banner_img_base64 else ""
-
-# 2. 渲染弹性布局 (Flexbox) 横幅
-st.markdown(f"""
-<div style="
-    display: flex;
-    flex-wrap: wrap; /* 核心魔法：屏幕不够宽时，自动折行排布 */
-    align-items: center;
-    justify-content: center;
-    gap: clamp(20px, 4vw, 40px); /* 图片和文字的间距动态调整 */
-    padding: clamp(30px, 5vw, 50px);
-    border-radius: 24px;
-    background: linear-gradient(135deg, #2c1a3b, #110a17); /* 与你们 Logo 相呼应的高级暗紫色调 */
-    margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-">
-    
-    <!-- 左侧（或上方）：社团 Logo -->
-    {img_html}
-
-    <!-- 右侧（或下方）：文字标题 -->
-    <div style="text-align: center; min-width: 260px;">
-        <h1 style="
-            /* 核心魔法：字体大小动态缩放！最小30px，最适合6vw，最大48px */
-            font-size: clamp(30px, 6vw, 48px); 
-            font-weight: 800; 
-            color: #ffffff; 
-            margin: 0 0 10px 0; 
-            line-height: 1.2;
-        ">南京大学地理协会</h1>
-        
-        <h3 style="
-            font-size: clamp(18px, 4vw, 24px); 
-            font-weight: 400; 
-            color: #d1c4e9; /* 浅紫色副标题 */
-            margin: 0;
-        ">地理无界 · 世界相连</h3>
-    </div>
-
-</div>
-""", unsafe_allow_html=True)
 
 # ==========================================
 # 5. 主界面：四选项卡 (Tabs) 排版设计
