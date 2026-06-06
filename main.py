@@ -255,13 +255,6 @@ if not ZHIPU_API_KEY:
 
 api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 
-# ==========================================
-# 3. 侧边栏：版权信息 & 导航提示
-# ==========================================
-with st.sidebar:
-    st.image("slogan.png", width=240)
-    
-    st.markdown("💡 **Tip**: 欢迎体验右侧的 `AI 智能答疑` 模块！它已经学习了本站的所有活动与推文信息。")
 
 # ==========================================
 # 4. 主界面：大横幅 (Banner)
