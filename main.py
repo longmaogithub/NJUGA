@@ -448,7 +448,7 @@ st.markdown(f"""
 <!-- 左侧：文案区 -->
 <div style="flex: 1; min-width: 260px; z-index: 1;">
 <h2 style="margin: 0 0 15px 0; font-size: clamp(32px, 5vw, 46px); font-weight: 800; background: linear-gradient(90deg, #c4b5fd, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ready to Explore?</h2>
-<p style="color: #cbd5e1; font-size: 16px; line-height: 1.8; margin: 0; font-weight: 400;">无论你来自什么专业，<br>只要对土地、城市与世界保持好奇，<br>我们都欢迎你加入。</p>
+<p style="color: #cbd5e1; font-size: 20px; line-height: 1.8; margin: 0; font-weight: 400;">无论你来自什么专业，<br>只要对土地、城市与世界保持好奇，<br>我们都欢迎你加入。</p>
 </div>
 
 <!-- 右侧：联系方式卡片区 -->
@@ -457,24 +457,24 @@ st.markdown(f"""
 <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px;">💬</span>
 <div style="display: flex; flex-direction: column;">
-<span style="color: #94a3b8; font-size: 12px; font-weight: 600;">官方招新 QQ 群</span>
-<span style="color: #ffffff; font-size: 16px; font-weight: 700;">720915627</span>
+<span style="color: #94a3b8; font-size: 16px; font-weight: 600;">活动 QQ 群</span>
+<span style="color: #ffffff; font-size: 20px; font-weight: 700;">720915627</span>
 </div>
 </div>
 
 <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px;">📱</span>
 <div style="display: flex; flex-direction: column;">
-<span style="color: #94a3b8; font-size: 12px; font-weight: 600;">微信公众号</span>
-<span style="color: #ffffff; font-size: 16px; font-weight: 700;">山河南观</span>
+<span style="color: #94a3b8; font-size: 16px; font-weight: 600;">微信公众号</span>
+<span style="color: #ffffff; font-size: 20px; font-weight: 700;">山河南观</span>
 </div>
 </div>
 
 <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px;">📕</span>
 <div style="display: flex; flex-direction: column;">
-<span style="color: #94a3b8; font-size: 12px; font-weight: 600;">小红书账号</span>
-<span style="color: #ffffff; font-size: 16px; font-weight: 700;">南大地理协会</span>
+<span style="color: #94a3b8; font-size: 16px; font-weight: 600;">小红书账号</span>
+<span style="color: #ffffff; font-size: 20px; font-weight: 700;">南大地理协会</span>
 </div>
 </div>
 
