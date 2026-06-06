@@ -634,7 +634,7 @@ with tab3:
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
     st.markdown("### 🤖 NJUGA 智能百事通")
-    st.markdown("你可以问我：*这周末有活动吗？* 或者 *九州风物的推文有链接吗？*")
+    st.markdown("你可以问我：*最近有什么活动吗？* 或者 *九州风物的推文有链接吗？*")
     
     if "messages" not in st.session_state:
         st.session_state.messages = []
