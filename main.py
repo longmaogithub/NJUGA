@@ -451,8 +451,163 @@ details{
     }
 
 }
+            
+/* =========================
+   Banner
+========================= */
+
+.hero-banner{
+
+width:100%;
+min-height:380px;
+
+background:
+url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000");
+
+background-size:cover;
+background-position:center;
+
+border-radius:36px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:40px;
+
+overflow:hidden;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,0.15);
+}
+
+.hero-overlay{
+
+width:100%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.hero-glass{
+
+display:flex;
+align-items:center;
+
+gap:40px;
+
+width:min(1100px,90%);
+
+padding:40px 50px;
+
+border-radius:32px;
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
+
+border:1px solid rgba(255,255,255,0.2);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.12);
+}
+
+.hero-logo{
+
+flex-shrink:0;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.hero-logo img{
+
+width:220px !important;
+
+border-radius:28px;
+
+box-shadow:
+0 15px 30px rgba(0,0,0,0.15);
+}
+
+.hero-text{
+
+flex:1;
+
+text-align:center;
+}
+
+.hero-text h1{
+
+margin:0;
+
+font-size:72px;
+
+font-weight:800;
+
+color:white;
+
+line-height:1.15;
+}
+
+.hero-text p{
+
+margin-top:24px;
+
+font-size:28px;
+
+font-weight:500;
+
+color:rgba(255,255,255,0.95);
+}
+
+/* =========================
+   手机端
+========================= */
+
+@media (max-width:768px){
+
+.hero-banner{
+
+min-height:260px;
+
+padding:20px;
+}
+
+.hero-glass{
+
+gap:18px;
+
+padding:20px;
+
+border-radius:24px;
+}
+
+.hero-logo img{
+
+width:90px !important;
+}
+
+.hero-text h1{
+
+font-size:34px;
+}
+
+.hero-text p{
+
+font-size:18px;
+
+margin-top:10px;
+}
+
+}
 </style>
 """, unsafe_allow_html=True)
+
+
 
 
 # ==========================================
@@ -492,110 +647,24 @@ img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width
 # ==========================================
 
 st.markdown(f"""
-<div style="
-position:relative;
-overflow:hidden;
-background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000');
-background-size:cover;
-background-position:center;
-border-radius:36px;
-padding:70px 50px;
-margin-bottom:40px;
-box-shadow:0 20px 60px rgba(0,0,0,0.15);
-">
+<div class="hero-banner">
 
-<div style="
-position:absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:rgba(0,0,0,0.25);
-"></div>
+<div class="hero-overlay">
 
-<div style="
-position:relative;
-z-index:2;
-display:flex;
-flex-wrap:wrap;;
-flex-wrap:wrap;
-justify-content:center;
-align-items:center;
-gap:40px;
-">
+<div class="hero-glass">
 
-<div style="
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.2);
-border-radius:28px;
-padding:35px 45px;
-display:flex;
-flex-wrap:wrap;;
-align-items:center;
-gap:30px;
-">
-
+<div class="hero-logo">
 {img_html}
+</div>
 
-<div style="text-align:center;">
-
-<h1 style="
-margin:0;
-font-size:clamp(34px,6vw,56px);
-font-weight:800;
-color:white;
-">
-南京大学地理协会
-</h1>
-
-<p style="
-margin-top:12px;
-font-size:22px;
-color:rgba(255,255,255,0.95);
-">
-地理无界 · 世界相连
-</p>
-
-<p style="
-margin-top:15px;
-font-size:15px;
-line-height:1.8;
-color:rgba(255,255,255,0.8);
-">
-
-</p>
-
+<div class="hero-text">
+<h1>南京大学地理协会</h1>
+<p>地理无界 · 世界相连</p>
 </div>
 
 </div>
 
 </div>
-
-<div style="
-position:absolute;
-top:-80px;
-right:-80px;
-width:260px;
-height:260px;
-background:#60a5fa;
-opacity:0.25;
-border-radius:50%;
-filter:blur(100px);
-"></div>
-
-<div style="
-position:absolute;
-bottom:-80px;
-left:-80px;
-width:260px;
-height:260px;
-background:#a78bfa;
-opacity:0.25;
-border-radius:50%;
-filter:blur(100px);
-"></div>
 
 </div>
 """, unsafe_allow_html=True)
