@@ -451,6 +451,65 @@ details{
     }
 
 }
+            
+/* ==========================================
+   移动端 Banner 终极修复（居中 + 文字优化）
+   ========================================== */
+@media (max-width: 768px) {
+    .hero-banner-mobile {
+        padding: 30px 20px !important;   /* 减小手机上的上下左右内边距 */
+    }
+
+    /* 毛玻璃卡片容器（内层 flex 容器） */
+    .hero-banner-mobile > div[style*="display:flex"] {
+        flex-direction: column !important;   /* 改为垂直排列 */
+        align-items: center !important;      /* 所有子项水平居中 */
+        gap: 20px !important;
+        padding: 25px 20px !important;       /* 减小卡片内部填充 */
+    }
+
+    /* 包裹 logo 的 div —— 强制让图片居中 */
+    .hero-banner-mobile img {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: clamp(80px, 25vw, 120px) !important; /* 适当缩小，但依然舒适 */
+    }
+
+    /* 文本容器（标题 + 副标题） */
+    .hero-banner-mobile div[style*="text-align:center"] {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* 主标题：防止强行换行，允许优雅换行但控制字号 */
+    .hero-banner-mobile h1 {
+        font-size: clamp(28px, 6vw, 38px) !important;
+        line-height: 1.3 !important;
+        word-break: break-word !important;
+        white-space: normal !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* 副标题 */
+    .hero-banner-mobile p {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+        word-break: break-word !important;
+        padding: 0 8px !important;
+    }
+
+    /* 如果毛玻璃卡片内还有其他复杂结构，做一个保险 —— 让所有直接子元素都居中 */
+    .hero-banner-mobile > div[style*="background:rgba(255,255,255,0.15)"] > * {
+        text-align: center !important;
+    }
+}
+
+.hero-banner-mobile h1 {
+    white-space: nowrap !important;
+    overflow-x: auto !important;   /* 允许横向滑动，优雅降级 */
+    -webkit-overflow-scrolling: touch;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -492,7 +551,7 @@ img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width
 # ==========================================
 
 st.markdown(f"""
-<div style="
+<div class="hero-banner-mobile" style="
 position:relative;
 overflow:hidden;
 background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000');
