@@ -732,7 +732,7 @@ details{
 
 /* 毛玻璃遮罩层 */
 .banner-overlay {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: 32px;
