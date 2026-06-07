@@ -898,6 +898,43 @@ st.markdown(f"""
 # ==========================================
 tab1, tab2, tab3, tab4 = st.tabs(["🏠 首页", "🔥 活动通知", "📚 相关推文", "🤖 AI 智能答疑"])
 
+# ----------------- 标签页 4：AI 答疑模块 -----------------
+with tab4:
+    st.markdown("### 🤖 NJUGA 智能百事通")
+    st.markdown("你可以问我：*最近有什么活动吗？* 或者 *九州风物的推文有链接吗？*")
+    
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+        st.session_state.messages.append({"role": "assistant", "content": "你好！我是南大地协的 AI 小助手，关于协会的任何问题都可以问我哦！🌍"})
+
+    latest_knowledge = get_association_knowledge_base()
+    st.session_state.messages = [msg for msg in st.session_state.messages if msg["role"] != "system"]
+    st.session_state.messages.insert(0, {"role": "system", "content": latest_knowledge})
+
+    for msg in st.session_state.messages:
+        if msg["role"] != "system":
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+                
+    if user_input := st.chat_input("输入关于地协的问题..."):
+        st.session_state.messages.append({"role": "user", "content": user_input})
+        with st.chat_message("user"):
+            st.markdown(user_input)
+
+        with st.chat_message("assistant"):
+            stream_response = api_client.generate_stream_response(st.session_state.messages)
+            
+            if isinstance(stream_response, str):
+                st.error(f"网络异常: {stream_response}")
+            else:
+                def stream_generator():
+                    for chunk in stream_response:
+                        if chunk.choices[0].delta.content:
+                            yield chunk.choices[0].delta.content
+                
+                full_answer = st.write_stream(stream_generator())
+                st.session_state.messages.append({"role": "assistant", "content": full_answer})
+
 # ----------------- 标签页 1：首页 -----------------
 with tab1:
 
