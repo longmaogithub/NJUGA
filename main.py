@@ -78,6 +78,7 @@ st.markdown("""
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;  /* 添加指针表示可点击 */
 }
 
 /* 鼠标悬浮时，图片微微放大（极具高级感） */
@@ -882,12 +883,6 @@ tab1, tab2, tab3, tab4 = st.tabs(["🏠 首页", "🔥 活动通知", "📚 相�
 with tab1:
 
     # =========================
-    # Hero
-    # =========================
-
-    
-
-    # =========================
     # 社团介绍
     # =========================
 
@@ -919,9 +914,6 @@ with tab1:
 一起走，一起看见。   
         """)
 
-    # === 找到你的首页分列代码，替换右边这一列 ===
-    # 假设你之前是 col_a, col_b = st.columns([1.5, 1]) 或者类似的
-    
     with col2:
         # 1. 把本地背景图转为 Base64（使用缓存函数）
         stats_bg_base64 = get_image_base64("images/rocklion.jpg")
@@ -929,7 +921,7 @@ with tab1:
         # 2. 生成背景 CSS
         bg_style = f"url('data:image/jpeg;base64,{stats_bg_base64}') center/cover" if stats_bg_base64 else "linear-gradient(135deg, #e0eafc, #cfdef3)"
         
-        # 3. 渲染带背景的大容器 (⚠️ 绝对不能有前置空格！)
+        # 3. 渲染带背景的大容器
         st.markdown(f"""
 <div style="background: {bg_style}; padding: 30px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 20px; height: 100%;">
 <!-- 第一张卡片：30+ -->
@@ -947,41 +939,33 @@ with tab1:
 
     st.divider()
 
-# =========================
-    # 图集
     # =========================
-
+    # 图集 Gallery（支持全屏点击）
+    # =========================
     st.markdown("## 📸 图集 Gallery")
     st.caption("过去一年，我们走过的地方")
 
-    g1,g2,g3 = st.columns(3)
-
-    with g1:
-        st.image(
-            "images/wenzhou.jpg",
-            use_container_width=True
-        )
-
-        st.caption("温州")
-
-        
-
-    with g2:
-        st.image(
-            "images/星光集市.jpg",
-            use_container_width=True
-        )
-
-        st.caption("星光集市")
-
-       
-    with g3:
-        st.image(
-            "images/午朝门.jpg",
-            use_container_width=True
-        )
-
-        st.caption("午朝门")
+    # 使用自定义 HTML 实现图片点击全屏，替代 st.image
+    gallery_images = [
+        {"path": "images/wenzhou.jpg", "caption": "温州"},
+        {"path": "images/星光集市.jpg", "caption": "星光集市"},
+        {"path": "images/午朝门.jpg", "caption": "午朝门"}
+    ]
+    
+    cols = st.columns(3)
+    for idx, img in enumerate(gallery_images):
+        with cols[idx]:
+            img_base64 = get_image_base64(img["path"])
+            if img_base64:
+                img_src = f"data:image/jpeg;base64,{img_base64}"
+                st.markdown(f"""
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="{img_src}" class="fullscreen-img" style="width: 100%; border-radius: 18px; cursor: pointer;" loading="lazy">
+                    <p style="margin-top: 8px; color: #666;">{img['caption']}</p>
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"<div style='text-align:center'>⚠️ 图片缺失: {img['path']}</div>", unsafe_allow_html=True)
 
     st.divider()
 
@@ -1030,106 +1014,90 @@ with tab1:
     **无论你是什么专业、什么年级**，只要你对土地与空间有好奇心，这里就有一个位置等你。
     """)
 
-
-
     st.divider()
 
-    
-    # =========================
-    # 加入我们
-    # =========================
-
     # ==========================================
-# ==========================================
-# 底部招募卡片 (Ready to Explore)
-# ==========================================
-st.markdown(f"""
-<div style="box-sizing: border-box; width: 100%; position: relative; background: linear-gradient(145deg, #0f172a, #1a1a2e, #2d2a4a); border-radius: 24px; padding: clamp(25px, 5vw, 50px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; margin-top: 20px;">
-<!-- 背景炫光特效 (右上角的紫色光晕) -->
-<div style="position: absolute; top: -50px; right: -20px; width: 250px; height: 250px; background: #7c3aed; filter: blur(90px); opacity: 0.4; border-radius: 50%;"></div>
-<div style="position: absolute; bottom: -50px; left: -20px; width: 200px; height: 200px; background: #2563eb; filter: blur(80px); opacity: 0.3; border-radius: 50%;"></div>
+    # 底部招募卡片 (Ready to Explore)
+    # ==========================================
+    st.markdown(f"""
+    <div style="box-sizing: border-box; width: 100%; position: relative; background: linear-gradient(145deg, #0f172a, #1a1a2e, #2d2a4a); border-radius: 24px; padding: clamp(25px, 5vw, 50px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; margin-top: 20px;">
+    <!-- 背景炫光特效 (右上角的紫色光晕) -->
+    <div style="position: absolute; top: -50px; right: -20px; width: 250px; height: 250px; background: #7c3aed; filter: blur(90px); opacity: 0.4; border-radius: 50%;"></div>
+    <div style="position: absolute; bottom: -50px; left: -20px; width: 200px; height: 200px; background: #2563eb; filter: blur(80px); opacity: 0.3; border-radius: 50%;"></div>
 
-<!-- 左侧：文案区 -->
-<div style="flex: 1 1 250px; max-width: 100%; box-sizing: border-box; z-index: 1;">
-<h2 style="margin: 0 0 15px 0; font-size: clamp(26px, 8vw, 46px); font-weight: 800; background: linear-gradient(90deg, #c4b5fd, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; word-break: break-word;">Ready to Explore?</h2>
-<p style="color: #cbd5e1; font-size: 16px; line-height: 1.8; margin: 0; font-weight: 400; word-break: break-word;">无论你来自什么专业，<br>只要对土地、城市与世界保持好奇，<br>我们都欢迎你加入。</p>
-</div>
+    <!-- 左侧：文案区 -->
+    <div style="flex: 1 1 250px; max-width: 100%; box-sizing: border-box; z-index: 1;">
+    <h2 style="margin: 0 0 15px 0; font-size: clamp(26px, 8vw, 46px); font-weight: 800; background: linear-gradient(90deg, #c4b5fd, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; word-break: break-word;">Ready to Explore?</h2>
+    <p style="color: #cbd5e1; font-size: 16px; line-height: 1.8; margin: 0; font-weight: 400; word-break: break-word;">无论你来自什么专业，<br>只要对土地、城市与世界保持好奇，<br>我们都欢迎你加入。</p>
+    </div>
 
-<!-- 右侧：联系方式卡片区 -->
-<div style="flex: 1 1 250px; max-width: 100%; box-sizing: border-box; z-index: 1; display: flex; flex-direction: column; gap: 12px;">
+    <!-- 右侧：联系方式卡片区 -->
+    <div style="flex: 1 1 250px; max-width: 100%; box-sizing: border-box; z-index: 1; display: flex; flex-direction: column; gap: 12px;">
 
-<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
-<span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">💬</span>
-<div style="display: flex; flex-direction: column; overflow: hidden;">
-<span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">活动 QQ 群</span>
-<span style="color: #ffffff; font-size: 20px; font-weight: 700; word-break: break-all;">720915627</span>
-</div>
-</div>
+    <div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+    <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">💬</span>
+    <div style="display: flex; flex-direction: column; overflow: hidden;">
+    <span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">活动 QQ 群</span>
+    <span style="color: #ffffff; font-size: 20px; font-weight: 700; word-break: break-all;">720915627</span>
+    </div>
+    </div>
 
-<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
-<span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📱</span>
-<div style="display: flex; flex-direction: column; overflow: hidden;">
-<span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">微信公众号</span>
-<span style="color: #ffffff; font-size: 20px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">山河南观</span>
-</div>
-</div>
+    <div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+    <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📱</span>
+    <div style="display: flex; flex-direction: column; overflow: hidden;">
+    <span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">微信公众号</span>
+    <span style="color: #ffffff; font-size: 20px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">山河南观</span>
+    </div>
+    </div>
 
-<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
-<span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📕</span>
-<div style="display: flex; flex-direction: column; overflow: hidden;">
-<span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">小红书账号</span>
-<span style="color: #ffffff; font-size: 20px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">南大地理协会</span>
-</div>
-</div>
+    <div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+    <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📕</span>
+    <div style="display: flex; flex-direction: column; overflow: hidden;">
+    <span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">小红书账号</span>
+    <span style="color: #ffffff; font-size: 20px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">南大地理协会</span>
+    </div>
+    </div>
 
-</div>
-</div>
-""", unsafe_allow_html=True)
+    </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-# ----------------- 页面底部版权信息 -----------------
-
-
-
-st.markdown("""
-<div style="
-    width: 100%;
-    padding: 40px 20px;
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-    border-top: 1px solid #eee;
-    margin-top: 60px;
-">
-    南京大学 安邦书院<br>
-    251830038 杨宝鑫 | 251830056 陈琪睿 | 251200015 张跃恒<br>
-    &copy; 2026 南京大学地理协会. 保留所有权利
-</div>
-""", unsafe_allow_html=True)
+    # ----------------- 页面底部版权信息 -----------------
+    st.markdown("""
+    <div style="
+        width: 100%;
+        padding: 40px 20px;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        border-top: 1px solid #eee;
+        margin-top: 60px;
+    ">
+        南京大学 安邦书院<br>
+        251830038 杨宝鑫 | 251830056 陈琪睿 | 251200015 张跃恒<br>
+        &copy; 2026 南京大学地理协会. 保留所有权利
+    </div>
+    """, unsafe_allow_html=True)
 
 
-# ----------------- 标签页 2：活动通知 -----------------
-
+# ----------------- 标签页 2：活动通知（改为与推文相同的卡片样式） -----------------
 with tab2:
     st.markdown("### 🔥 最新活动")
     st.markdown("脚步丈量大地。")
     st.write("")  # 留白
 
-    # 活动分类
     act_categories = list(ACTIVITY_DATA.keys())
-    
-    # 子 Tabs
     act_sub_tabs = st.tabs(act_categories)
 
-    # 遍历每个分类
     for tab_obj, category in zip(act_sub_tabs, act_categories):
         with tab_obj:
             activities = ACTIVITY_DATA.get(category, [])
@@ -1138,79 +1106,50 @@ with tab2:
                 continue
 
             col1, col2 = st.columns(2, gap="large")
-
             for i, act in enumerate(activities):
                 target_col = col1 if i % 2 == 0 else col2
                 with target_col:
-                    # 读取图片 base64（使用缓存函数）
                     img_base64 = get_image_base64(act.get("cover", ""))
+                    img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" loading="lazy">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
                     
-                    # 图片 HTML（如果没有图片就用渐变占位图）
-                    img_html = (
-                        f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" style="width:100%; border-radius:10px;" loading="lazy">'
-                        if img_base64 else
-                        '<div style="width:100%; height:200px; border-radius:10px; background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>'
-                    )
-
-                    # 按钮文字
                     status = act.get('status', '未定义')
                     btn_text = "立即报名 ↗" if status == "报名中" else "查看详情 ↗"
-
-                    # 多行描述处理：使用 white-space: pre-line
-                    desc = act.get('desc', '')
+                    
+                    # 构建与推文卡片一致的苹果风卡片
                     st.markdown(f"""
-                    <div style="
-                        border:1px solid #eee; 
-                        border-radius:10px; 
-                        padding:15px; 
-                        margin-bottom:20px; 
-                        box-shadow:0 4px 6px rgba(0,0,0,0.1);
-                    ">
-                        <div style="text-align:center;margin-bottom:10px;">{img_html}</div>
-                        <h3 style="margin-bottom:5px;">{act.get('title', '无标题')}</h3>
-                        <p style="color:#555;font-size:14px;">📅 {act.get('date','未知日期')} | 📌 {status}</p>
-                        <p style="white-space: pre-line; font-size:14px; color:#333;">{desc}</p>
-                        <a href="{act.get('url','#')}" target="_blank" style="
-                            display:inline-block;
-                            padding:8px 16px;
-                            background-color:#007bff;
-                            color:white;
-                            border-radius:5px;
-                            text-decoration:none;
-                            margin-top:5px;
-                        ">{btn_text}</a>
+                    <div class="apple-card">
+                        <div class="card-img-container">
+                            {img_html}
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">{act.get('title', '无标题')}</div>
+                            <div class="card-meta">📅 {act.get('date','未知日期')} ｜ 📌 {status}</div>
+                            <div class="card-summary">{act.get('desc', '')}</div>
+                            <a href="{act.get('url','#')}" target="_blank" class="apple-btn">{btn_text}</a>
+                        </div>
                     </div>
                     """, unsafe_allow_html=True)
 
-# ----------------- 标签页 3：推文 (🍎 苹果级子选项卡排版) -----------------
+
+# ----------------- 标签页 3：推文 (保持原有风格，但图片已支持全屏) -----------------
 with tab3:
     st.markdown("### 📚 往期精选推文")
     st.markdown("探索我们过去的脚步，发现大地的故事。")
-    st.write("") # 留白
+    st.write("")
 
-    # 获取所有专栏名称
     categories = list(ARTICLE_DATA.keys())
-    
-    # 🌟 核心魔法 1：在 Tab 3 内部再创建一组子 Tabs！
     sub_tabs = st.tabs(categories)
 
-    # 遍历每个专栏和对应的子标签页
     for tab, category in zip(sub_tabs, categories):
         with tab:
             articles = ARTICLE_DATA[category]
             col1, col2 = st.columns(2, gap="large")
-
             for i, art in enumerate(articles):
                 target_col = col1 if i % 2 == 0 else col2
                 with target_col:
-                    
-                    # 🌟 核心魔法 2：将本地图片转为 Base64，彻底融入 HTML 卡片（使用缓存函数）
                     img_base64 = get_image_base64(art.get("cover", ""))
-                    
-                    # 生成图片 HTML 代码（如果没有本地图，放一张炫酷的渐变占位图）
                     img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" loading="lazy">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
-
-                    # 渲染带有极其丝滑特效的苹果风卡片
+                    
                     st.markdown(f"""
                     <div class="apple-card">
                         <div class="card-img-container">
@@ -1225,36 +1164,31 @@ with tab3:
                     </div>
                     """, unsafe_allow_html=True)
 
+
 # ----------------- 标签页 4：AI 答疑模块 -----------------
 with tab4:
     st.markdown("### 🤖 NJUGA 智能百事通")
     st.markdown("你可以问我：*最近有什么活动吗？* 或者 *九州风物的推文有链接吗？*")
     
-    # 初始化聊天记录（不包含 system）
     if "chat_messages" not in st.session_state:
         st.session_state.chat_messages = [{"role": "assistant", "content": "你好！我是南大地协的 AI 小助手，关于协会的任何问题都可以问我哦！🌍"}]
 
-    # 显示历史消息
     for msg in st.session_state.chat_messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
     
-    # 获取知识库并缓存到 session（避免每次读取）
     if "cached_knowledge" not in st.session_state:
         st.session_state.cached_knowledge = get_association_knowledge_base()
                 
-    # 用户输入
     if user_input := st.chat_input("输入关于地协的问题..."):
         st.session_state.chat_messages.append({"role": "user", "content": user_input})
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        # 构建完整消息（动态加入 system，不污染 session）
         full_messages = [{"role": "system", "content": st.session_state.cached_knowledge}] + st.session_state.chat_messages
 
         with st.chat_message("assistant"):
             stream_response = api_client.generate_stream_response(full_messages)
-            
             if isinstance(stream_response, str):
                 st.error(f"网络异常: {stream_response}")
             else:
@@ -1262,6 +1196,73 @@ with tab4:
                     for chunk in stream_response:
                         if chunk.choices[0].delta.content:
                             yield chunk.choices[0].delta.content
-                
                 full_answer = st.write_stream(stream_generator())
                 st.session_state.chat_messages.append({"role": "assistant", "content": full_answer})
+
+
+# ==========================================
+# 6. 全局全屏预览图片 JavaScript
+# ==========================================
+st.markdown("""
+<script>
+(function() {
+    // 创建全屏模态框
+    const modal = document.createElement('div');
+    modal.id = 'image-modal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        backdrop-filter: blur(10px);
+        z-index: 10000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    `;
+    const modalImg = document.createElement('img');
+    modalImg.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    `;
+    modal.appendChild(modalImg);
+    document.body.appendChild(modal);
+    
+    // 关闭模态框
+    modal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+    
+    // 为所有可全屏的图片添加点击事件
+    function bindFullscreen() {
+        const images = document.querySelectorAll('.card-img, .fullscreen-img');
+        images.forEach(img => {
+            // 避免重复绑定
+            if (img.hasClickListener) return;
+            img.hasClickListener = true;
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function(e) {
+                e.stopPropagation();
+                modalImg.src = this.src;
+                modal.style.display = 'flex';
+            });
+        });
+    }
+    
+    // 初次绑定
+    bindFullscreen();
+    
+    // 监听 Streamlit 的动态更新（因为卡片可能会动态加载）
+    const observer = new MutationObserver(function() {
+        bindFullscreen();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+""", unsafe_allow_html=True)
