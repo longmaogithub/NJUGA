@@ -537,7 +537,15 @@ align-items:center;
 gap:30px;
 ">
 
+<div style="
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+margin-bottom:20px;
+">
 {img_html}
+</div>
 
 <div style="text-align:center;">
 
