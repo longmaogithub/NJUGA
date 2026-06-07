@@ -342,12 +342,12 @@ with tab1:
         st.markdown(f"""
 <div style="background: {bg_style}; padding: 30px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 20px; height: 100%;">
 <!-- 第一张卡片：30+ -->
-<div style="background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+<div style="background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
 <h2 style="margin: 0; color: #0071e3; font-size: 48px; font-weight: 800;">30+</h2>
 <p style="margin: 10px 0 0 0; color: #515154; font-size: 16px; font-weight: 500;">协会成员</p>
 </div>
 <!-- 第二张卡片：500+ -->
-<div style="background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+<div style="background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
 <h2 style="margin: 0; color: #0071e3; font-size: 48px; font-weight: 800;">500+</h2>
 <p style="margin: 10px 0 0 0; color: #515154; font-size: 16px; font-weight: 500;">活动群人数</p>
 </div>
