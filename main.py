@@ -35,7 +35,7 @@ st.markdown("""
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* 🍎 苹果风原生卡片设计 */
+/* 苹果风原生卡片设计 */
 .apple-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px); /* 毛玻璃特效 */
@@ -45,7 +45,7 @@ st.markdown("""
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
     margin-bottom: 30px;
-    /* 核心动画魔法：丝滑回弹曲线 */
+    /* 丝滑回弹曲线 */
     transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     animation: fadeSlideUp 0.8s ease-out forwards;
 }
@@ -70,7 +70,7 @@ st.markdown("""
     transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* 鼠标悬浮时，图片微微放大（极具高级感） */
+/* 鼠标悬浮时，图片微微放大 */
 .apple-card:hover .card-img {
     transform: scale(1.05);
 }
@@ -110,7 +110,7 @@ st.markdown("""
     overflow: hidden;
 }
 
-/* 🍎 苹果风胶囊按钮 */
+/* 苹果风胶囊按钮 */
 .apple-btn {
     display: inline-block;
     background: #0071e3;
@@ -468,7 +468,7 @@ details{
         padding: 25px 20px !important;       /* 减小卡片内部填充 */
     }
 
-    /* 包裹 logo 的 div —— 强制让图片居中 */
+    /* 包裹 logo 的 div ：强制让图片居中 */
     .hero-banner-mobile img {
         display: block !important;
         margin-left: auto !important;
@@ -482,7 +482,7 @@ details{
         text-align: center !important;
     }
 
-    /* 主标题：防止强行换行，允许优雅换行但控制字号 */
+    /* 主标题：防止强行换行，允许换行但控制字号 */
     .hero-banner-mobile h1 {
         font-size: clamp(28px, 6vw, 38px) !important;
         line-height: 1.3 !important;
@@ -499,7 +499,7 @@ details{
         padding: 0 8px !important;
     }
 
-    /* 如果毛玻璃卡片内还有其他复杂结构，做一个保险 —— 让所有直接子元素都居中 */
+    /* 如果毛玻璃卡片内还有其他复杂结构，做一个保险，让所有直接子元素都居中 */
     .hero-banner-mobile > div[style*="background:rgba(255,255,255,0.15)"] > * {
         text-align: center !important;
     }
@@ -529,7 +529,7 @@ details{
         padding-top: 10px !important;
     }
 
-    /* 3. 重写电脑版的大横幅（Hero）—— 手机版简洁卡片式 */
+    /* 3. 重写电脑版的大横幅（Hero）：手机版简洁卡片式 */
     .hero-banner-mobile {
         background: white !important;
         padding: 20px 16px !important;
@@ -715,7 +715,7 @@ details{
     border-radius: 32px;
     overflow: hidden;
     margin-bottom: 40px;
-    background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000') center/cover no-repeat;
+    background: url('images/doubleflags.jpg') center/cover no-repeat;
 }
 
 /* 毛玻璃遮罩层 */
