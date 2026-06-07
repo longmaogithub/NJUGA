@@ -461,46 +461,32 @@ img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width
 # ==========================================
 
 st.markdown(f"""
+
 <div style="
-position: relative;
-overflow: hidden;
+position:relative;
+overflow:hidden;
 
-background:
-url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000');
+background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000');
+background-size:cover;
+background-position:center;
 
-background-size: cover;
-background-position: center;
+border-radius:36px;
+padding:70px 50px;
+margin-bottom:40px;
 
-border-radius: 36px;
-
-padding: clamp(40px,6vw,80px);
-
-margin-bottom: 40px;
-
-box-shadow:
-0 20px 60px rgba(0,0,0,0.15);
+box-shadow:0 20px 60px rgba(0,0,0,0.15);
 ">
 
-<!-- 暗色蒙版 -->
 <div style="
 position:absolute;
 top:0;
 left:0;
 right:0;
 bottom:0;
-
-background:
-linear-gradient(
-135deg,
-rgba(15,23,42,0.35),
-rgba(30,41,59,0.25)
-);
-
-z-index:0;
+background:rgba(0,0,0,0.25);
 ">
 </div>
 
-<!-- 内容区域 -->
 <div style="
 position:relative;
 z-index:2;
@@ -514,29 +500,25 @@ align-items:center;
 gap:40px;
 ">
 
-<!-- 毛玻璃主体 -->
 <div style="
-background: rgba(255,255,255,0.15);
+background:rgba(255,255,255,0.18);
 
-backdrop-filter: blur(24px);
--webkit-backdrop-filter: blur(24px);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
 
-border: 1px solid rgba(255,255,255,0.25);
+border:1px solid rgba(255,255,255,0.25);
 
-border-radius: 32px;
+border-radius:28px;
 
-padding: clamp(30px,4vw,50px);
+padding:35px 45px;
 
 display:flex;
 flex-wrap:wrap;
 
-justify-content:center;
 align-items:center;
+justify-content:center;
 
-gap:35px;
-
-box-shadow:
-0 8px 32px rgba(31,38,135,0.15);
+gap:30px;
 ">
 
 {img_html}
@@ -545,45 +527,29 @@ box-shadow:
 
 <h1 style="
 margin:0;
-
-font-size:clamp(34px,6vw,58px);
-
+font-size:clamp(34px,6vw,56px);
 font-weight:800;
-
 color:white;
-
-letter-spacing:-1px;
-
-line-height:1.1;
 ">
 南京大学地理协会
 </h1>
 
 <p style="
-margin-top:14px;
-
-font-size:clamp(18px,3vw,24px);
-
+margin-top:12px;
+font-size:22px;
 color:rgba(255,255,255,0.92);
-
-font-weight:500;
 ">
 地理无界 · 世界相连
 </p>
 
 <p style="
-margin-top:18px;
-
+margin-top:15px;
 font-size:15px;
-
-color:rgba(255,255,255,0.8);
-
-max-width:600px;
-
 line-height:1.8;
+color:rgba(255,255,255,0.82);
 ">
-探索土地的纹理，阅读城市的故事，
-让山河成为课堂，让世界成为坐标。
+探索土地的纹理，阅读城市的故事<br>
+让山河成为课堂，让世界成为坐标
 </p>
 
 </div>
@@ -592,47 +558,29 @@ line-height:1.8;
 
 </div>
 
-<!-- 右上光斑 -->
 <div style="
 position:absolute;
-
 top:-80px;
 right:-80px;
-
-width:280px;
-height:280px;
-
+width:260px;
+height:260px;
 background:#60a5fa;
-
 opacity:0.25;
-
 border-radius:50%;
-
 filter:blur(100px);
-
-z-index:1;
 ">
 </div>
 
-<!-- 左下光斑 -->
 <div style="
 position:absolute;
-
-bottom:-100px;
-left:-60px;
-
+bottom:-80px;
+left:-80px;
 width:260px;
 height:260px;
-
 background:#a78bfa;
-
-opacity:0.22;
-
+opacity:0.25;
 border-radius:50%;
-
 filter:blur(100px);
-
-z-index:1;
 ">
 </div>
 
