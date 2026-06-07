@@ -1,4 +1,3 @@
-# main.py
 import streamlit as st
 import os
 import base64
@@ -6,7 +5,18 @@ from zhipu_api import ReviewAssistantAPI
 from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 
 # ==========================================
-# 1. 页面配置 & CSS 
+# 0. 全局缓存：图片转 Base64（避免重复 I/O）
+# ==========================================
+@st.cache_data
+def get_image_base64(image_path: str) -> str:
+    """读取本地图片并返回 Base64 字符串，若文件不存在返回空字符串"""
+    if os.path.exists(image_path):
+        with open(image_path, "rb") as f:
+            return base64.b64encode(f.read()).decode()
+    return ""
+
+# ==========================================
+# 1. 页面配置 & 🍎 苹果风超炫酷 CSS 动画
 # ==========================================
 st.markdown("""
 <style>
@@ -841,12 +851,9 @@ api_client = ReviewAssistantAPI(api_key=ZHIPU_API_KEY)
 # ==========================================
 # 4. 主界面：大横幅 (Banner)
 # ==========================================
-# 读取 logo（你原来已经有这部分，直接复用 banner_img_base64）
-banner_img_base64 = ""
-if os.path.exists("logo.png"):
-    with open("logo.png", "rb") as img_file:
-        banner_img_base64 = base64.b64encode(img_file.read()).decode()
-img_html = f'<img src="data:image/png;base64,{banner_img_base64}" alt="NJU Geo Logo">' if banner_img_base64 else '<div style="width:90px;"></div>'
+# 读取 logo（使用缓存函数）
+banner_img_base64 = get_image_base64("logo.png")
+img_html = f'<img src="data:image/png;base64,{banner_img_base64}" alt="NJU Geo Logo" loading="lazy">' if banner_img_base64 else '<div style="width:90px;"></div>'
 
 st.markdown(f"""
 <div class="responsive-glass-banner">
@@ -916,11 +923,8 @@ with tab1:
     # 假设你之前是 col_a, col_b = st.columns([1.5, 1]) 或者类似的
     
     with col2:
-        # 1. 把本地背景图转为 Base64
-        stats_bg_base64 = ""
-        if os.path.exists("images/rocklion.jpg"):  # 确保你的图片名字是这个
-            with open("images/rocklion.jpg", "rb") as img_file:
-                stats_bg_base64 = base64.b64encode(img_file.read()).decode()
+        # 1. 把本地背景图转为 Base64（使用缓存函数）
+        stats_bg_base64 = get_image_base64("images/rocklion.jpg")
         
         # 2. 生成背景 CSS
         bg_style = f"url('data:image/jpeg;base64,{stats_bg_base64}') center/cover" if stats_bg_base64 else "linear-gradient(135deg, #e0eafc, #cfdef3)"
@@ -1138,18 +1142,12 @@ with tab2:
             for i, act in enumerate(activities):
                 target_col = col1 if i % 2 == 0 else col2
                 with target_col:
-                    # 读取图片 base64
-                    img_base64 = ""
-                    if act.get("cover") and os.path.exists(act["cover"]):
-                        try:
-                            with open(act["cover"], "rb") as img_file:
-                                img_base64 = base64.b64encode(img_file.read()).decode()
-                        except:
-                            img_base64 = ""
-
+                    # 读取图片 base64（使用缓存函数）
+                    img_base64 = get_image_base64(act.get("cover", ""))
+                    
                     # 图片 HTML（如果没有图片就用渐变占位图）
                     img_html = (
-                        f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" style="width:100%; border-radius:10px;">'
+                        f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" style="width:100%; border-radius:10px;" loading="lazy">'
                         if img_base64 else
                         '<div style="width:100%; height:200px; border-radius:10px; background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>'
                     )
@@ -1206,14 +1204,11 @@ with tab3:
                 target_col = col1 if i % 2 == 0 else col2
                 with target_col:
                     
-                    # 🌟 核心魔法 2：将本地图片转为 Base64，彻底融入 HTML 卡片
-                    img_base64 = ""
-                    if "cover" in art and os.path.exists(art["cover"]):
-                        with open(art["cover"], "rb") as img_file:
-                            img_base64 = base64.b64encode(img_file.read()).decode()
+                    # 🌟 核心魔法 2：将本地图片转为 Base64，彻底融入 HTML 卡片（使用缓存函数）
+                    img_base64 = get_image_base64(art.get("cover", ""))
                     
                     # 生成图片 HTML 代码（如果没有本地图，放一张炫酷的渐变占位图）
-                    img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
+                    img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" loading="lazy">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
 
                     # 渲染带有极其丝滑特效的苹果风卡片
                     st.markdown(f"""
@@ -1235,26 +1230,30 @@ with tab4:
     st.markdown("### 🤖 NJUGA 智能百事通")
     st.markdown("你可以问我：*最近有什么活动吗？* 或者 *九州风物的推文有链接吗？*")
     
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-        st.session_state.messages.append({"role": "assistant", "content": "你好！我是南大地协的 AI 小助手，关于协会的任何问题都可以问我哦！🌍"})
+    # 初始化聊天记录（不包含 system）
+    if "chat_messages" not in st.session_state:
+        st.session_state.chat_messages = [{"role": "assistant", "content": "你好！我是南大地协的 AI 小助手，关于协会的任何问题都可以问我哦！🌍"}]
 
-    latest_knowledge = get_association_knowledge_base()
-    st.session_state.messages = [msg for msg in st.session_state.messages if msg["role"] != "system"]
-    st.session_state.messages.insert(0, {"role": "system", "content": latest_knowledge})
-
-    for msg in st.session_state.messages:
-        if msg["role"] != "system":
-            with st.chat_message(msg["role"]):
-                st.markdown(msg["content"])
+    # 显示历史消息
+    for msg in st.session_state.chat_messages:
+        with st.chat_message(msg["role"]):
+            st.markdown(msg["content"])
+    
+    # 获取知识库并缓存到 session（避免每次读取）
+    if "cached_knowledge" not in st.session_state:
+        st.session_state.cached_knowledge = get_association_knowledge_base()
                 
+    # 用户输入
     if user_input := st.chat_input("输入关于地协的问题..."):
-        st.session_state.messages.append({"role": "user", "content": user_input})
+        st.session_state.chat_messages.append({"role": "user", "content": user_input})
         with st.chat_message("user"):
             st.markdown(user_input)
 
+        # 构建完整消息（动态加入 system，不污染 session）
+        full_messages = [{"role": "system", "content": st.session_state.cached_knowledge}] + st.session_state.chat_messages
+
         with st.chat_message("assistant"):
-            stream_response = api_client.generate_stream_response(st.session_state.messages)
+            stream_response = api_client.generate_stream_response(full_messages)
             
             if isinstance(stream_response, str):
                 st.error(f"网络异常: {stream_response}")
@@ -1265,5 +1264,4 @@ with tab4:
                             yield chunk.choices[0].delta.content
                 
                 full_answer = st.write_stream(stream_generator())
-                st.session_state.messages.append({"role": "assistant", "content": full_answer})
-
+                st.session_state.chat_messages.append({"role": "assistant", "content": full_answer})
