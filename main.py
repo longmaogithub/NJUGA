@@ -456,7 +456,20 @@ img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width
 # 2. 渲染弹性布局 (Flexbox) 横幅
 # ⚠️ 注意：下面的 HTML 代码绝对不能有任何空格缩进，必须顶格写！
 st.markdown(f"""
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(20px, 4vw, 40px); padding: clamp(30px, 5vw, 50px); border-radius: 24px; <div style="position:relative;overflow:hidden;background:url(...);background-size:cover;background-position:center;border-radius:32px;padding:60px;">; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(20px, 4vw, 40px); padding: clamp(30px, 5vw, 50px); border-radius: 24px; <div style="
+display:inline-block;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+padding:35px;
+
+border-radius:24px;
+">; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
 {img_html}
 <div style="text-align: center; min-width: 260px;">
 <h1 style="font-size: clamp(30px, 6vw, 48px); font-weight: 800; color: #ffffff; margin: 0 0 10px 0; line-height: 1.2;">南京大学地理协会</h1>
