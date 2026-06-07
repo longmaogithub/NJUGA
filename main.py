@@ -510,6 +510,204 @@ details{
     overflow-x: auto !important;   /* 允许横向滑动，优雅降级 */
     -webkit-overflow-scrolling: touch;
 }
+            
+/* ==========================================
+   手机端完全重设计 (宽度 ≤ 768px)
+   ========================================== */
+@media (max-width: 768px) {
+
+    /* 1. 全局背景简化 */
+    .stApp {
+        background: #f5f5f7 !important;  /* 苹果浅灰，比纯白柔和 */
+    }
+
+    /* 2. 内容区宽度占满，去除多余留白 */
+    .block-container {
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-top: 10px !important;
+    }
+
+    /* 3. 重写电脑版的大横幅（Hero）—— 手机版简洁卡片式 */
+    .hero-banner-mobile {
+        background: white !important;
+        padding: 20px 16px !important;
+        border-radius: 28px !important;
+        margin-bottom: 24px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
+        /* 去掉原背景图、大阴影 */
+        background-image: none !important;
+        position: relative !important;
+    }
+
+    /* 隐藏原来的毛玻璃背景层和彩色光晕 */
+    .hero-banner-mobile > div[style*="position:absolute"] {
+        display: none !important;
+    }
+
+    /* 手机版内层 flex 容器：垂直 + 居中 */
+    .hero-banner-mobile > div[style*="display:flex"] {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 12px !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    /* logo 图片：圆角适中，居中 */
+    .hero-banner-mobile img {
+        width: 80px !important;
+        height: auto !important;
+        border-radius: 20px !important;
+        margin: 0 auto !important;
+        display: block !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+    }
+
+    /* 标题文字容器 */
+    .hero-banner-mobile div[style*="text-align:center"] {
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    .hero-banner-mobile h1 {
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        color: #1d1d1f !important;
+        margin: 0 0 6px 0 !important;
+        letter-spacing: -0.3px !important;
+    }
+
+    .hero-banner-mobile p {
+        font-size: 16px !important;
+        color: #86868b !important;
+        margin: 0 !important;
+        line-height: 1.4 !important;
+    }
+
+    /* 4. 手机端 Tabs 改为可滑动 + 更友好的胶囊样式 */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        flex-wrap: nowrap !important;
+        padding-bottom: 8px !important;
+        scrollbar-width: thin;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        background: rgba(0,0,0,0.04) !important;
+        backdrop-filter: none !important;
+        border-radius: 30px !important;
+        padding: 8px 18px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #1d1d1f !important;
+        white-space: nowrap !important;
+        transition: all 0.2s ease;
+    }
+
+    .stTabs [aria-selected="true"] {
+        background: #0071e3 !important;
+        color: white !important;
+    }
+
+    /* 5. 手机端卡片（活动/推文）完全重设计 */
+    .apple-card {
+        background: white !important;
+        backdrop-filter: none !important;
+        border-radius: 20px !important;
+        border: none !important;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+        margin-bottom: 16px !important;
+        transition: none !important;
+        animation: none !important; /* 去掉入场动画 */
+    }
+
+    .apple-card:hover {
+        transform: none !important;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+    }
+
+    .card-img-container {
+        height: 160px !important;
+    }
+
+    .card-content {
+        padding: 16px !important;
+    }
+
+    .card-title {
+        font-size: 18px !important;
+        line-height: 1.35 !important;
+        -webkit-line-clamp: 2 !important;
+    }
+
+    .card-meta {
+        font-size: 12px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .card-summary {
+        font-size: 14px !important;
+        -webkit-line-clamp: 3 !important;
+        margin-bottom: 16px !important;
+        color: #3a3a3c !important;
+    }
+
+    /* 胶囊按钮改为块级，方便点按 */
+    .apple-btn {
+        display: block !important;
+        text-align: center !important;
+        padding: 12px !important;
+        font-size: 15px !important;
+    }
+
+    /* 6. 隐藏电脑端的毛玻璃统计卡、复杂footer里的多余装饰（如果有） */
+    .stat-card, .glass-card, .gallery-frame {
+        background: white !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+    }
+
+    /* 7. 页脚（footer）手机版轻量化 */
+    .footer-glass {
+        background: white !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: 0 -1px 0 rgba(0,0,0,0.05) !important;
+        padding: 24px 20px !important;
+        margin-top: 32px !important;
+        text-align: center !important;
+        font-size: 13px !important;
+    }
+
+    /* 8. AI 聊天框等组件自适应宽度 */
+    .stTextInput > div, .stTextArea > div {
+        width: 100% !important;
+    }
+
+    /* 9. 隐藏电脑端可能会有的大光晕（绝对定位的圆） */
+    div[style*="filter: blur(100px)"] {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    footer {
+        visibility: hidden;
+        height: 0;
+    }
+    /* 隐藏 Streamlit 自带的菜单按钮等 */
+    .stActionButton, .stDecoration {
+        display: none;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
