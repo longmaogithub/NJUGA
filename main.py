@@ -451,158 +451,8 @@ details{
     }
 
 }
-            
-/* =====================================
-   Banner
-===================================== */
-
-.hero-banner{
-    width:100%;
-    min-height:420px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border-radius:36px;
-
-    background:
-    linear-gradient(
-        rgba(0,0,0,.15),
-        rgba(0,0,0,.15)
-    ),
-    url("images/banner.jpg");
-
-    background-size:cover;
-    background-position:center;
-
-    overflow:hidden;
-
-    margin-bottom:40px;
-}
-
-/* 只保留这一层毛玻璃 */
-.hero-card{
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    gap:40px;
-
-    padding:40px 60px;
-
-    border-radius:32px;
-
-    background:rgba(255,255,255,.12);
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    border:1px solid rgba(255,255,255,.2);
-
-    box-shadow:
-    0 20px 40px rgba(0,0,0,.15);
-
-    max-width:1000px;
-    width:85%;
-}
-
-.hero-card img{
-    width:140px;
-    height:140px;
-    object-fit:cover;
-
-    border-radius:28px;
-
-    background:white;
-
-    padding:12px;
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.15);
-}
-
-.hero-text{
-    text-align:left;
-}
-
-.hero-text h1{
-    margin:0;
-
-    color:white;
-
-    font-size:clamp(28px,4vw,72px);
-
-    font-weight:800;
-
-    line-height:1.1;
-
-    white-space:nowrap;
-}
-
-.hero-text p{
-    margin-top:20px;
-
-    color:white;
-
-    font-size:clamp(18px,2vw,32px);
-
-    opacity:.95;
-}
-
-/* =====================================
-   手机端
-===================================== */
-
-@media (max-width:768px){
-
-.hero-banner{
-    min-height:360px;
-}
-
-.hero-card{
-
-    width:88%;
-
-    padding:30px 25px;
-
-    gap:20px;
-
-    flex-direction:column;
-}
-
-.hero-card img{
-    width:100px;
-    height:100px;
-}
-
-.hero-text{
-    text-align:center;
-}
-
-.hero-text h1{
-
-    font-size:36px;
-
-    white-space:normal;
-
-    word-break:keep-all;
-
-    line-height:1.25;
-}
-
-.hero-text p{
-
-    font-size:20px;
-
-    margin-top:12px;
-}
-}
 </style>
 """, unsafe_allow_html=True)
-
-
 
 
 # ==========================================
@@ -632,17 +482,7 @@ if os.path.exists("logo.png"):
     with open("logo.png", "rb") as img_file:
         banner_img_base64 = base64.b64encode(img_file.read()).decode()
 
-img_html = """
-<img
-src="logo.png"
-style="
-width:120px;
-height:120px;
-border-radius:24px;
-background:white;
-padding:12px;
-">
-"""
+img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width: clamp(100px, 15vw, 160px); height: auto; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">""" if banner_img_base64 else ""
 
 # 2. 渲染弹性布局 (Flexbox) 横幅
 # ⚠️ 注意：下面的 HTML 代码绝对不能有任何空格缩进，必须顶格写！
@@ -652,18 +492,110 @@ padding:12px;
 # ==========================================
 
 st.markdown(f"""
-<div class="hero-banner">
+<div style="
+position:relative;
+overflow:hidden;
+background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000');
+background-size:cover;
+background-position:center;
+border-radius:36px;
+padding:70px 50px;
+margin-bottom:40px;
+box-shadow:0 20px 60px rgba(0,0,0,0.15);
+">
 
-    <div class="hero-card">
+<div style="
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,0.25);
+"></div>
 
-        {img_html}
+<div style="
+position:relative;
+z-index:2;
+display:flex;
+flex-wrap:wrap;;
+flex-wrap:wrap;
+justify-content:center;
+align-items:center;
+gap:40px;
+">
 
-        <div class="hero-text">
-            <h1>南京大学地理协会</h1>
-            <p>地理无界 · 世界相连</p>
-        </div>
+<div style="
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:28px;
+padding:35px 45px;
+display:flex;
+flex-wrap:wrap;;
+align-items:center;
+gap:30px;
+">
 
-    </div>
+{img_html}
+
+<div style="text-align:center;">
+
+<h1 style="
+margin:0;
+font-size:clamp(34px,6vw,56px);
+font-weight:800;
+color:white;
+">
+南京大学地理协会
+</h1>
+
+<p style="
+margin-top:12px;
+font-size:22px;
+color:rgba(255,255,255,0.95);
+">
+地理无界 · 世界相连
+</p>
+
+<p style="
+margin-top:15px;
+font-size:15px;
+line-height:1.8;
+color:rgba(255,255,255,0.8);
+">
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div style="
+position:absolute;
+top:-80px;
+right:-80px;
+width:260px;
+height:260px;
+background:#60a5fa;
+opacity:0.25;
+border-radius:50%;
+filter:blur(100px);
+"></div>
+
+<div style="
+position:absolute;
+bottom:-80px;
+left:-80px;
+width:260px;
+height:260px;
+background:#a78bfa;
+opacity:0.25;
+border-radius:50%;
+filter:blur(100px);
+"></div>
 
 </div>
 """, unsafe_allow_html=True)
