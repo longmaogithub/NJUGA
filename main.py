@@ -1018,11 +1018,11 @@ with tab1:
 
     with g1:
         st.image(
-            "images/wenzhou.jpg",
+            "images/钟山.jpg",
             use_container_width=True
         )
 
-        st.caption("温州")
+        st.caption("钟山")
 
         
 
