@@ -419,7 +419,38 @@ details{
     transform:
     translateY(-3px);
 }
+/* =========================
+   手机端适配
+========================= */
 
+@media (max-width:768px){
+
+    .block-container{
+        max-width:100% !important;
+        padding-left:12px !important;
+        padding-right:12px !important;
+    }
+
+    .stTabs [data-baseweb="tab"]{
+        font-size:14px !important;
+        padding-left:8px !important;
+        padding-right:8px !important;
+        white-space:nowrap !important;
+    }
+
+    h1{
+        font-size:32px !important;
+    }
+
+    h2{
+        font-size:26px !important;
+    }
+
+    h3{
+        font-size:20px !important;
+    }
+
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -486,6 +517,7 @@ background:rgba(0,0,0,0.25);
 position:relative;
 z-index:2;
 display:flex;
+flex-wrap:wrap;;
 flex-wrap:wrap;
 justify-content:center;
 align-items:center;
@@ -500,6 +532,7 @@ border:1px solid rgba(255,255,255,0.2);
 border-radius:28px;
 padding:35px 45px;
 display:flex;
+flex-wrap:wrap;;
 align-items:center;
 gap:30px;
 ">
