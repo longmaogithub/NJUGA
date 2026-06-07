@@ -1286,11 +1286,3 @@ with tab4:
                 full_answer = st.write_stream(stream_generator())
                 st.session_state.messages.append({"role": "assistant", "content": full_answer})
 
-st.markdown("""
-<script>
-document.addEventListener('mousemove', function(e) {
-    document.body.style.setProperty('--x', e.clientX + 'px');
-    document.body.style.setProperty('--y', e.clientY + 'px');
-});
-</script>
-""", unsafe_allow_html=True)
