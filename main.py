@@ -939,12 +939,6 @@ with tab4:
 with tab1:
 
     # =========================
-    # Hero
-    # =========================
-
-    
-
-    # =========================
     # 社团介绍
     # =========================
 
@@ -976,13 +970,11 @@ with tab1:
 一起走，一起看见。   
         """)
 
-    # === 找到你的首页分列代码，替换右边这一列 ===
-    # 假设你之前是 col_a, col_b = st.columns([1.5, 1]) 或者类似的
     
     with col2:
         # 1. 把本地背景图转为 Base64
         stats_bg_base64 = ""
-        if os.path.exists("images/rocklion.jpg"):  # 确保你的图片名字是这个
+        if os.path.exists("images/rocklion.jpg"):  
             with open("images/rocklion.jpg", "rb") as img_file:
                 stats_bg_base64 = base64.b64encode(img_file.read()).decode()
         
@@ -1099,7 +1091,7 @@ with tab1:
     # 加入我们
     # =========================
 
-    # ==========================================
+   
 # ==========================================
 # 底部招募卡片 (Ready to Explore)
 # ==========================================
@@ -1257,7 +1249,7 @@ with tab3:
     # 获取所有专栏名称
     categories = list(ARTICLE_DATA.keys())
     
-    # 🌟 核心魔法 1：在 Tab 3 内部再创建一组子 Tabs！
+    # 在 Tab 3 内部再创建一组子 Tabs
     sub_tabs = st.tabs(categories)
 
     # 遍历每个专栏和对应的子标签页
@@ -1270,16 +1262,15 @@ with tab3:
                 target_col = col1 if i % 2 == 0 else col2
                 with target_col:
                     
-                    # 🌟 核心魔法 2：将本地图片转为 Base64，彻底融入 HTML 卡片
+                    # 将本地图片转为 Base64，彻底融入 HTML 卡片
                     img_base64 = ""
                     if "cover" in art and os.path.exists(art["cover"]):
                         with open(art["cover"], "rb") as img_file:
                             img_base64 = base64.b64encode(img_file.read()).decode()
                     
-                    # 生成图片 HTML 代码（如果没有本地图，放一张炫酷的渐变占位图）
+                    # 生成图片 HTML 代码（如果没有本地图，放一张渐变占位图）
                     img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img">' if img_base64 else '<div style="width:100%; height:100%; background: linear-gradient(135deg, #e0eafc, #cfdef3);"></div>'
 
-                    # 渲染带有极其丝滑特效的苹果风卡片
                     st.markdown(f"""
                     <div class="apple-card">
                         <div class="card-img-container">
