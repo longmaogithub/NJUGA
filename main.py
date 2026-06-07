@@ -632,7 +632,17 @@ if os.path.exists("logo.png"):
     with open("logo.png", "rb") as img_file:
         banner_img_base64 = base64.b64encode(img_file.read()).decode()
 
-img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width: clamp(100px, 15vw, 160px); height: auto; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">""" if banner_img_base64 else ""
+img_html = """
+<img
+src="logo.png"
+style="
+width:120px;
+height:120px;
+border-radius:24px;
+background:white;
+padding:12px;
+">
+"""
 
 # 2. 渲染弹性布局 (Flexbox) 横幅
 # ⚠️ 注意：下面的 HTML 代码绝对不能有任何空格缩进，必须顶格写！
