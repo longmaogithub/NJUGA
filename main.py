@@ -332,7 +332,7 @@ with tab1:
         # 1. 把本地背景图转为 Base64
         stats_bg_base64 = ""
         if os.path.exists("images/rocklion.jpg"): 
-            with open("bg_stats.jpg", "rb") as img_file:
+            with open("images/rocklion.jpg", "rb") as img_file:
                 stats_bg_base64 = base64.b64encode(img_file.read()).decode()
         
         # 2. 如果有图片就用图片，没有就用极其高级的蓝紫色渐变兜底
