@@ -816,25 +816,6 @@ details{
     }
 }
             
-/* 鼠标跟随光晕  */
-body {
-    cursor: default;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,200,0.12) 0%, rgba(255,255,200,0) 80%);
-    z-index: 9999;
-    transition: background 0.05s linear;
-    mix-blend-mode: overlay;
-}
 </style>
 """, unsafe_allow_html=True)
 
