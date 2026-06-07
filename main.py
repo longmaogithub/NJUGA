@@ -455,28 +455,191 @@ img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width
 
 # 2. 渲染弹性布局 (Flexbox) 横幅
 # ⚠️ 注意：下面的 HTML 代码绝对不能有任何空格缩进，必须顶格写！
+
+# ==========================================
+# Apple Vision Pro 风格 Banner
+# ==========================================
+
 st.markdown(f"""
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(20px, 4vw, 40px); padding: clamp(30px, 5vw, 50px); border-radius: 24px; <div style="
-display:inline-block;
+<div style="
+position: relative;
+overflow: hidden;
 
-background:rgba(255,255,255,0.15);
+background:
+url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000');
 
-backdrop-filter:blur(25px);
--webkit-backdrop-filter:blur(25px);
+background-size: cover;
+background-position: center;
 
-border:1px solid rgba(255,255,255,0.25);
+border-radius: 36px;
 
-padding:35px;
+padding: clamp(40px,6vw,80px);
 
-border-radius:24px;
-">; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-{img_html}
-<div style="text-align: center; min-width: 260px;">
-<h1 style="font-size: clamp(30px, 6vw, 48px); font-weight: 800; color: #ffffff; margin: 0 0 10px 0; line-height: 1.2;">南京大学地理协会</h1>
-<h3 style="font-size: clamp(18px, 4vw, 24px); font-weight: 400; color: #d1c4e9; margin: 0;">地理无界 · 世界相连</h3>
+margin-bottom: 40px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,0.15);
+">
+
+<!-- 暗色蒙版 -->
+<div style="
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+
+background:
+linear-gradient(
+135deg,
+rgba(15,23,42,0.35),
+rgba(30,41,59,0.25)
+);
+
+z-index:0;
+">
 </div>
+
+<!-- 内容区域 -->
+<div style="
+position:relative;
+z-index:2;
+
+display:flex;
+flex-wrap:wrap;
+
+justify-content:center;
+align-items:center;
+
+gap:40px;
+">
+
+<!-- 毛玻璃主体 -->
+<div style="
+background: rgba(255,255,255,0.15);
+
+backdrop-filter: blur(24px);
+-webkit-backdrop-filter: blur(24px);
+
+border: 1px solid rgba(255,255,255,0.25);
+
+border-radius: 32px;
+
+padding: clamp(30px,4vw,50px);
+
+display:flex;
+flex-wrap:wrap;
+
+justify-content:center;
+align-items:center;
+
+gap:35px;
+
+box-shadow:
+0 8px 32px rgba(31,38,135,0.15);
+">
+
+{img_html}
+
+<div style="text-align:center;">
+
+<h1 style="
+margin:0;
+
+font-size:clamp(34px,6vw,58px);
+
+font-weight:800;
+
+color:white;
+
+letter-spacing:-1px;
+
+line-height:1.1;
+">
+南京大学地理协会
+</h1>
+
+<p style="
+margin-top:14px;
+
+font-size:clamp(18px,3vw,24px);
+
+color:rgba(255,255,255,0.92);
+
+font-weight:500;
+">
+地理无界 · 世界相连
+</p>
+
+<p style="
+margin-top:18px;
+
+font-size:15px;
+
+color:rgba(255,255,255,0.8);
+
+max-width:600px;
+
+line-height:1.8;
+">
+探索土地的纹理，阅读城市的故事，
+让山河成为课堂，让世界成为坐标。
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- 右上光斑 -->
+<div style="
+position:absolute;
+
+top:-80px;
+right:-80px;
+
+width:280px;
+height:280px;
+
+background:#60a5fa;
+
+opacity:0.25;
+
+border-radius:50%;
+
+filter:blur(100px);
+
+z-index:1;
+">
+</div>
+
+<!-- 左下光斑 -->
+<div style="
+position:absolute;
+
+bottom:-100px;
+left:-60px;
+
+width:260px;
+height:260px;
+
+background:#a78bfa;
+
+opacity:0.22;
+
+border-radius:50%;
+
+filter:blur(100px);
+
+z-index:1;
+">
+</div>
+
 </div>
 """, unsafe_allow_html=True)
+
+
 
 # ==========================================
 # 5. 主界面：四选项卡 (Tabs) 排版设计
