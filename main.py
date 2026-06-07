@@ -467,7 +467,10 @@ st.markdown(f"""
 <!-- 右侧：联系方式卡片区 -->
 <div style="flex: 1 1 250px; max-width: 100%; box-sizing: border-box; z-index: 1; display: flex; flex-direction: column; gap: 12px;">
 
-<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">💬</span>
 <div style="display: flex; flex-direction: column; overflow: hidden;">
 <span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">活动 QQ 群</span>
@@ -475,7 +478,10 @@ st.markdown(f"""
 </div>
 </div>
 
-<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📱</span>
 <div style="display: flex; flex-direction: column; overflow: hidden;">
 <span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">微信公众号</span>
@@ -483,7 +489,10 @@ st.markdown(f"""
 </div>
 </div>
 
-<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
+<div style="box-sizing: border-box; width: 100%; background: rgba(255,255,255,0.15);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border:1px solid rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; backdrop-filter: blur(10px);">
 <span style="font-size: 20px; margin-right: 15px; flex-shrink: 0;">📕</span>
 <div style="display: flex; flex-direction: column; overflow: hidden;">
 <span style="color: #94a3b8; font-size: 16px; font-weight: 600; white-space: nowrap;">小红书账号</span>
