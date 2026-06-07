@@ -1329,10 +1329,15 @@ with tab4:
                         img_path = img_paths[idx]
                         img_base64 = get_image_base64(img_path)
                         if img_base64:
-                            col.image(f"data:image/jpeg;base64,{img_base64}", use_container_width=True)
+                            # 使用与 tab2 活动卡片图片相同的 HTML 结构
+                            img_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="card-img" style="width:100%; height:100%; object-fit: cover;">'
+                            col.markdown(f"""
+                            <div class="card-img-container" style="height:200px; margin-bottom:10px;">
+                                {img_html}
+                            </div>
+                            """, unsafe_allow_html=True)
                         else:
                             col.markdown(f"<div style='text-align:center'>⚠️ 图片缺失: {img_path}</div>", unsafe_allow_html=True)
                     else:
                         col.empty()
             st.markdown("---")
-
