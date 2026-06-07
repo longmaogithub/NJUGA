@@ -461,19 +461,15 @@ img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width
 # ==========================================
 
 st.markdown(f"""
-
 <div style="
 position:relative;
 overflow:hidden;
-
 background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000');
 background-size:cover;
 background-position:center;
-
 border-radius:36px;
 padding:70px 50px;
 margin-bottom:40px;
-
 box-shadow:0 20px 60px rgba(0,0,0,0.15);
 ">
 
@@ -484,40 +480,27 @@ left:0;
 right:0;
 bottom:0;
 background:rgba(0,0,0,0.25);
-">
-</div>
+"></div>
 
 <div style="
 position:relative;
 z-index:2;
-
 display:flex;
 flex-wrap:wrap;
-
 justify-content:center;
 align-items:center;
-
 gap:40px;
 ">
 
 <div style="
-background:rgba(255,255,255,0.18);
-
+background:rgba(255,255,255,0.15);
 backdrop-filter:blur(20px);
 -webkit-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,0.25);
-
+border:1px solid rgba(255,255,255,0.2);
 border-radius:28px;
-
 padding:35px 45px;
-
 display:flex;
-flex-wrap:wrap;
-
 align-items:center;
-justify-content:center;
-
 gap:30px;
 ">
 
@@ -537,7 +520,7 @@ color:white;
 <p style="
 margin-top:12px;
 font-size:22px;
-color:rgba(255,255,255,0.92);
+color:rgba(255,255,255,0.95);
 ">
 地理无界 · 世界相连
 </p>
@@ -546,10 +529,9 @@ color:rgba(255,255,255,0.92);
 margin-top:15px;
 font-size:15px;
 line-height:1.8;
-color:rgba(255,255,255,0.82);
+color:rgba(255,255,255,0.8);
 ">
-探索土地的纹理，阅读城市的故事<br>
-让山河成为课堂，让世界成为坐标
+
 </p>
 
 </div>
@@ -568,8 +550,7 @@ background:#60a5fa;
 opacity:0.25;
 border-radius:50%;
 filter:blur(100px);
-">
-</div>
+"></div>
 
 <div style="
 position:absolute;
@@ -581,8 +562,7 @@ background:#a78bfa;
 opacity:0.25;
 border-radius:50%;
 filter:blur(100px);
-">
-</div>
+"></div>
 
 </div>
 """, unsafe_allow_html=True)
