@@ -102,6 +102,14 @@ ARTICLE_DATA = {
 
     "地图上": [
         {
+            "title": "地图上的梅山里：两地飞归是故乡",
+            "author": "王瓯 折云渡海 李苇杭 连露妍 何立文",
+            "date": "2026年6月7日",
+            "summary": "6月7日，2026年全国高考拉开帷幕。在南京梅山，一批特殊的考生也将走进考场。",
+            "url": "https://mp.weixin.qq.com/s/D_QgI9X0fTcCG9O1zw1IEw",
+            "cover": "images/article_images/地图上的梅山：两地飞归是故乡.png"
+        },
+        {
             "title": "地图上的长干里：六代繁华如远舟",
             "author": "折云渡海 乜海海",
             "date": "2026年6月2日",
