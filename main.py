@@ -1011,7 +1011,7 @@ with tab1:
     # 图集
     # =========================
 
-    st.markdown("## 📸 图集 Gallery")
+    st.markdown("## 📸 图集")
     st.caption("过去一年，我们走过的地方")
 
     g1,g2,g3 = st.columns(3)
@@ -1169,7 +1169,8 @@ st.markdown("""
     border-top: 1px solid #eee;
     margin-top: 60px;
 ">
-<br>
+    南京大学 安邦书院<br>
+    251830038 杨宝鑫 | 251830056 陈琪睿 | 251200015 张跃恒<br>
     &copy; 2026 南京大学地理协会. 保留所有权利
 </div>
 """, unsafe_allow_html=True)
@@ -1333,4 +1334,4 @@ with tab4:
                             col.markdown(f"<div style='text-align:center'>⚠️ 图片缺失: {img_path}</div>", unsafe_allow_html=True)
                     else:
                         col.empty()
-            st.markdown("---")  # 分割线
+            st.markdown("---")
