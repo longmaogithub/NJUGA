@@ -3,3 +3,4 @@ zhipuai
 python-dotenv
 sniffio
 httpx
+st-clickable-images
