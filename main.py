@@ -149,26 +149,71 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-
 st.markdown("""
 <style>
 
-/* 首页专属 */
+/* ==========================
+   Vision Pro 毛玻璃设计系统
+   ========================== */
+
+.glass-card{
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    border-radius: 28px;
+
+    box-shadow:
+    0 8px 32px rgba(31,38,135,0.12);
+
+    transition: all .4s ease;
+}
+
+.glass-card:hover{
+    transform: translateY(-6px);
+
+    box-shadow:
+    0 18px 45px rgba(31,38,135,0.18);
+}
+
+
+/* ==========================
+   Hero
+   ========================== */
 
 .hero-box{
+    position:relative;
+
+    overflow:hidden;
+
     background:
-    linear-gradient(
-        rgba(0,0,0,0.35),
-        rgba(0,0,0,0.35)
-    ),
     url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000");
-    
+
     background-size:cover;
     background-position:center;
 
-    border-radius:32px;
+    border-radius:36px;
+
     padding:90px 60px;
+
     margin-bottom:50px;
+}
+
+.hero-overlay{
+    display:inline-block;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    border-radius:28px;
+
+    padding:40px;
 }
 
 .hero-title{
@@ -184,12 +229,30 @@ st.markdown("""
     opacity:0.95;
 }
 
+
+/* ==========================
+   统计卡
+   ========================== */
+
 .stat-card{
-    background:white;
+    background:rgba(255,255,255,0.25);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
     border-radius:24px;
+
+    border:1px solid rgba(255,255,255,0.25);
+
     padding:30px;
+
     text-align:center;
-    box-shadow:0 4px 20px rgba(0,0,0,0.05);
+
+    transition:.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-4px);
 }
 
 .stat-number{
@@ -202,41 +265,164 @@ st.markdown("""
     color:#666;
 }
 
+
+/* ==========================
+   图集
+   ========================== */
+
+.gallery-frame{
+
+    background:rgba(255,255,255,0.25);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-radius:24px;
+
+    padding:12px;
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    transition:.35s;
+}
+
+.gallery-frame:hover{
+    transform:translateY(-5px);
+}
+
 .gallery-img{
     width:100%;
-    border-radius:22px;
-    transition:0.5s;
+    border-radius:18px;
+
+    transition:.45s;
 }
 
 .gallery-img:hover{
     transform:scale(1.03);
 }
 
-.join-box{
-    text-align:center;
-    padding:70px;
-    border-radius:30px;
-    background:linear-gradient(
-        135deg,
-        #0071e3,
-        #3b82f6
-    );
-    color:white;
-    margin-top:40px;
+
+/* ==========================
+   Expander
+   ========================== */
+
+details{
+    background:rgba(255,255,255,0.25)!important;
+
+    backdrop-filter:blur(18px)!important;
+
+    border-radius:20px!important;
+
+    border:1px solid rgba(255,255,255,0.25)!important;
+
+    margin-bottom:15px!important;
 }
 
-.join-title{
-    font-size:42px;
-    font-weight:800;
+
+/* ==========================
+   Tabs
+   ========================== */
+
+.stTabs [data-baseweb="tab-list"]{
+    gap:16px;
 }
 
-.join-text{
-    font-size:18px;
-    opacity:0.95;
+.stTabs [data-baseweb="tab"]{
+
+    background:
+    rgba(255,255,255,0.18);
+
+    backdrop-filter:
+    blur(12px);
+
+    border-radius:
+    16px;
+
+    padding-left:20px;
+    padding-right:20px;
+
+    transition:.3s;
+}
+
+.stTabs [aria-selected="true"]{
+
+    background:
+    rgba(255,255,255,0.4);
+
+    backdrop-filter:
+    blur(18px);
+
+    color:#0071e3!important;
+
+    font-weight:700!important;
+}
+
+
+/* ==========================
+   Footer
+   ========================== */
+
+.footer-glass{
+
+    background:
+    rgba(255,255,255,0.2);
+
+    backdrop-filter:
+    blur(16px);
+
+    -webkit-backdrop-filter:
+    blur(16px);
+
+    border-top:
+    1px solid rgba(255,255,255,0.25);
+
+    border-radius:
+    24px;
+
+    padding:
+    35px;
+
+    margin-top:
+    60px;
+}
+
+
+/* ==========================
+   招募联系方式卡
+   ========================== */
+
+.contact-glass{
+
+    background:
+    rgba(255,255,255,0.15);
+
+    backdrop-filter:
+    blur(20px);
+
+    -webkit-backdrop-filter:
+    blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,0.18);
+
+    border-radius:
+    18px;
+
+    transition:.3s;
+}
+
+.contact-glass:hover{
+
+    background:
+    rgba(255,255,255,0.2);
+
+    transform:
+    translateY(-3px);
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 # ==========================================
 # 2. 动态密钥加载与 AI 实例化
