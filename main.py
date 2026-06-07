@@ -1239,13 +1239,24 @@ st.markdown("""
         modal.style.display = 'none';
     });
     
-    // 为所有可全屏的图片添加点击事件
+    // 判断图片是否需要全屏（排除 logo 和 banner 背景图）
+    function shouldEnableFullscreen(img) {
+        // 排除 logo（data:image/png 且包含 logo）
+        if (img.src && img.src.includes('logo.png')) return false;
+        // 排除 banner 背景（不是 img 元素，不用担心）
+        // 允许所有其他图片（包括卡片、图集）
+        return true;
+    }
+    
+    // 为所有符合条件的图片绑定点击事件
     function bindFullscreen() {
-        const images = document.querySelectorAll('.card-img, .fullscreen-img');
+        const images = document.querySelectorAll('img');
         images.forEach(img => {
             // 避免重复绑定
-            if (img.hasClickListener) return;
-            img.hasClickListener = true;
+            if (img.hasFullscreenListener) return;
+            if (!shouldEnableFullscreen(img)) return;
+            
+            img.hasFullscreenListener = true;
             img.style.cursor = 'pointer';
             img.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -1258,8 +1269,8 @@ st.markdown("""
     // 初次绑定
     bindFullscreen();
     
-    // 监听 Streamlit 的动态更新（因为卡片可能会动态加载）
-    const observer = new MutationObserver(function() {
+    // 监听动态内容（Streamlit 组件更新）
+    const observer = new MutationObserver(function(mutations) {
         bindFullscreen();
     });
     observer.observe(document.body, { childList: true, subtree: true });
