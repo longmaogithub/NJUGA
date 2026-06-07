@@ -896,10 +896,10 @@ st.markdown(f"""
 # ==========================================
 # 5. 主界面：四选项卡 (Tabs) 排版设计
 # ==========================================
-tab1, tab2, tab3, tab4 = st.tabs(["🏠 首页", "🔥 活动通知", "📚 相关推文", "🤖 AI 智能答疑"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["🏠 首页", "🔥 活动通知", "📚 相关推文", "📷 图集", "🤖 AI 智能答疑"])
 
 # ----------------- 标签页 4：AI 答疑模块 -----------------
-with tab4:
+with tab5:
     st.markdown("### 🤖 NJUGA 智能百事通")
     st.markdown("你可以问我：*最近有什么活动吗？* 或者 *九州风物的推文有链接吗？*")
     
@@ -1330,3 +1330,43 @@ with tab4:
                 
                 full_answer = st.write_stream(stream_generator())
                 st.session_state.messages.append({"role": "assistant", "content": full_answer})
+
+with tab5:
+    st.markdown("## 📷 活动图集")
+    st.markdown("点击下方折叠面板，查看每次活动的精彩照片。")
+
+    # 定义图集数据：每个图集包含名称和图片列表（图片路径）
+    album_data = {
+        "星光集市": [
+            "images/星光集市.jpg",
+        ],
+        "午朝门石刻考察": [
+            "images/午朝门.jpg",
+        ],
+        "工业烟云·南朝遗梦": [
+            "activity_images/工业烟云.jpg",
+        ],
+    }
+
+    # 遍历每个图集，生成折叠面板
+    for album_name, img_paths in album_data.items():
+        with st.expander(f"📁 {album_name}"):
+            if not img_paths:
+                st.info("该图集暂无图片。")
+                continue
+            # 每行显示3列图片
+            cols_per_row = 3
+            for i in range(0, len(img_paths), cols_per_row):
+                row_cols = st.columns(cols_per_row)
+                for j, col in enumerate(row_cols):
+                    idx = i + j
+                    if idx < len(img_paths):
+                        img_path = img_paths[idx]
+                        img_base64 = get_image_base64(img_path)
+                        if img_base64:
+                            col.image(f"data:image/jpeg;base64,{img_base64}", use_container_width=True)
+                        else:
+                            col.markdown(f"<div style='text-align:center'>⚠️ 图片缺失: {img_path}</div>", unsafe_allow_html=True)
+                    else:
+                        col.empty()
+            st.markdown("---")  # 分割线
