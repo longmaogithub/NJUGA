@@ -1104,8 +1104,7 @@ st.markdown("""
     border-top: 1px solid #eee;
     margin-top: 60px;
 ">
-    南京大学 安邦书院<br>
-    251830038 杨宝鑫 | 251830056 陈琪睿 | 251200015 张跃恒<br>
+<br>
     &copy; 2026 南京大学地理协会. 保留所有权利
 </div>
 """, unsafe_allow_html=True)
