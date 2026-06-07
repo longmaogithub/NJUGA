@@ -452,157 +452,152 @@ details{
 
 }
             
-/* =========================
+/* =====================================
    Banner
-========================= */
+===================================== */
 
 .hero-banner{
+    width:100%;
+    min-height:420px;
 
-width:100%;
-min-height:380px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-background:
-url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000");
+    border-radius:36px;
 
-background-size:cover;
-background-position:center;
+    background:
+    linear-gradient(
+        rgba(0,0,0,.15),
+        rgba(0,0,0,.15)
+    ),
+    url("images/banner.jpg");
 
-border-radius:36px;
+    background-size:cover;
+    background-position:center;
 
-display:flex;
-justify-content:center;
-align-items:center;
+    overflow:hidden;
 
-padding:40px;
-
-overflow:hidden;
-
-box-shadow:
-0 20px 60px rgba(0,0,0,0.15);
+    margin-bottom:40px;
 }
 
-.hero-overlay{
+/* 只保留这一层毛玻璃 */
+.hero-card{
 
-width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-display:flex;
-justify-content:center;
-align-items:center;
+    gap:40px;
+
+    padding:40px 60px;
+
+    border-radius:32px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.15);
+
+    max-width:1000px;
+    width:85%;
 }
 
-.hero-glass{
+.hero-card img{
+    width:140px;
+    height:140px;
+    object-fit:cover;
 
-display:flex;
-align-items:center;
+    border-radius:28px;
 
-gap:40px;
+    background:white;
 
-width:min(1100px,90%);
+    padding:12px;
 
-padding:40px 50px;
-
-border-radius:32px;
-
-background:rgba(255,255,255,0.12);
-
-backdrop-filter:blur(22px);
--webkit-backdrop-filter:blur(22px);
-
-border:1px solid rgba(255,255,255,0.2);
-
-box-shadow:
-0 10px 40px rgba(0,0,0,0.12);
-}
-
-.hero-logo{
-
-flex-shrink:0;
-
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.hero-logo img{
-
-width:220px !important;
-
-border-radius:28px;
-
-box-shadow:
-0 15px 30px rgba(0,0,0,0.15);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
 }
 
 .hero-text{
-
-flex:1;
-
-text-align:center;
+    text-align:left;
 }
 
 .hero-text h1{
+    margin:0;
 
-margin:0;
+    color:white;
 
-font-size:72px;
+    font-size:clamp(28px,4vw,72px);
 
-font-weight:800;
+    font-weight:800;
 
-color:white;
+    line-height:1.1;
 
-line-height:1.15;
+    white-space:nowrap;
 }
 
 .hero-text p{
+    margin-top:20px;
 
-margin-top:24px;
+    color:white;
 
-font-size:28px;
+    font-size:clamp(18px,2vw,32px);
 
-font-weight:500;
-
-color:rgba(255,255,255,0.95);
+    opacity:.95;
 }
 
-/* =========================
+/* =====================================
    手机端
-========================= */
+===================================== */
 
 @media (max-width:768px){
 
 .hero-banner{
-
-min-height:260px;
-
-padding:20px;
+    min-height:360px;
 }
 
-.hero-glass{
+.hero-card{
 
-gap:18px;
+    width:88%;
 
-padding:20px;
+    padding:30px 25px;
 
-border-radius:24px;
+    gap:20px;
+
+    flex-direction:column;
 }
 
-.hero-logo img{
+.hero-card img{
+    width:100px;
+    height:100px;
+}
 
-width:90px !important;
+.hero-text{
+    text-align:center;
 }
 
 .hero-text h1{
 
-font-size:34px;
+    font-size:36px;
+
+    white-space:normal;
+
+    word-break:keep-all;
+
+    line-height:1.25;
 }
 
 .hero-text p{
 
-font-size:18px;
+    font-size:20px;
 
-margin-top:10px;
+    margin-top:12px;
 }
-
 }
 </style>
 """, unsafe_allow_html=True)
@@ -649,22 +644,16 @@ img_html = f"""<img src="data:image/png;base64,{banner_img_base64}" style="width
 st.markdown(f"""
 <div class="hero-banner">
 
-<div class="hero-overlay">
+    <div class="hero-card">
 
-<div class="hero-glass">
+        {img_html}
 
-<div class="hero-logo">
-{img_html}
-</div>
+        <div class="hero-text">
+            <h1>南京大学地理协会</h1>
+            <p>地理无界 · 世界相连</p>
+        </div>
 
-<div class="hero-text">
-<h1>南京大学地理协会</h1>
-<p>地理无界 · 世界相连</p>
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 """, unsafe_allow_html=True)
