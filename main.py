@@ -5,6 +5,18 @@ import base64
 from zhipu_api import ReviewAssistantAPI
 from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 
+
+# ==========================================
+# 0. 全局缓存：图片转 Base64（放在最前面，以便后续使用）
+# ==========================================
+@st.cache_data
+def get_image_base64(image_path: str) -> str:
+    """读取本地图片并返回 Base64 字符串，若文件不存在返回空字符串"""
+    if os.path.exists(image_path):
+        with open(image_path, "rb") as f:
+            return base64.b64encode(f.read()).decode()
+    return ""
+
 # ==========================================
 # 1. 页面配置 & CSS 
 # ==========================================
@@ -820,7 +832,21 @@ details{
 </style>
 """, unsafe_allow_html=True)
 
-
+# 将本地 banner 背景图转为 Base64 并覆盖 CSS 背景
+banner_bg_base64 = get_image_base64("images/doubleflags.jpg")  # 使用你已有的缓存函数
+if banner_bg_base64:
+    st.markdown(
+        f"""
+        <style>
+        .responsive-glass-banner {{
+            background: url('data:image/jpeg;base64,{banner_bg_base64}') center/cover no-repeat !important;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+else:
+    st.warning("未找到 images/doubleflags.jpg，Banner 背景将使用默认图片。")
 # ==========================================
 # 2. 动态密钥加载与 AI 实例化
 # ==========================================
