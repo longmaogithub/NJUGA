@@ -6,7 +6,7 @@ from zhipu_api import ReviewAssistantAPI
 from utils import get_association_knowledge_base, ACTIVITY_DATA, ARTICLE_DATA
 
 # ==========================================
-# 1. 页面配置 & 🍎 苹果风超炫酷 CSS 动画
+# 1. 页面配置 & CSS 
 # ==========================================
 st.markdown("""
 <style>
@@ -815,6 +815,26 @@ details{
         border-radius: 20px;
     }
 }
+            
+/* 鼠标跟随光晕  */
+body {
+    cursor: default;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,200,0.12) 0%, rgba(255,255,200,0) 80%);
+    z-index: 9999;
+    transition: background 0.05s linear;
+    mix-blend-mode: overlay;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -1104,7 +1124,8 @@ st.markdown("""
     border-top: 1px solid #eee;
     margin-top: 60px;
 ">
-<br>
+    南京大学 安邦书院<br>
+    251830038 杨宝鑫 | 251830056 陈琪睿 | 251200015 张跃恒<br>
     &copy; 2026 南京大学地理协会. 保留所有权利
 </div>
 """, unsafe_allow_html=True)
@@ -1264,3 +1285,12 @@ with tab4:
                 
                 full_answer = st.write_stream(stream_generator())
                 st.session_state.messages.append({"role": "assistant", "content": full_answer})
+
+st.markdown("""
+<script>
+document.addEventListener('mousemove', function(e) {
+    document.body.style.setProperty('--x', e.clientX + 'px');
+    document.body.style.setProperty('--y', e.clientY + 'px');
+});
+</script>
+""", unsafe_allow_html=True)
