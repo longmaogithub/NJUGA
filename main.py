@@ -331,54 +331,26 @@ with tab1:
     with col2:
         # 1. 把本地背景图转为 Base64
         stats_bg_base64 = ""
-        if os.path.exists("images/rocklion.jpg"): 
+        if os.path.exists("images/rocklion.jpg"):  # 确保你的图片名字是这个
             with open("images/rocklion.jpg", "rb") as img_file:
                 stats_bg_base64 = base64.b64encode(img_file.read()).decode()
         
-        # 2. 如果有图片就用图片，没有就用极其高级的蓝紫色渐变兜底
+        # 2. 生成背景 CSS
         bg_style = f"url('data:image/jpeg;base64,{stats_bg_base64}') center/cover" if stats_bg_base64 else "linear-gradient(135deg, #e0eafc, #cfdef3)"
         
-        # 3. 渲染带背景的大容器，并在里面放两个半透明的毛玻璃卡片
+        # 3. 渲染带背景的大容器 (⚠️ 绝对不能有前置空格！)
         st.markdown(f"""
-<div style="
-    background: {bg_style};
-    padding: 30px;
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 100%;
-">
-    <!-- 第一张卡片：30+ -->
-    <div style="
-        background: rgba(255, 255, 255, 0.85); /* 0.85透明度让背景图隐约透出来 */
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 40px 20px;
-        border-radius: 16px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        transition: transform 0.3s;
-    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h2 style="margin: 0; color: #0071e3; font-size: 48px; font-weight: 800;">30+</h2>
-        <p style="margin: 10px 0 0 0; color: #515154; font-size: 16px; font-weight: 500;">协会成员</p>
-    </div>
-
-    <!-- 第二张卡片：500+ -->
-    <div style="
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 40px 20px;
-        border-radius: 16px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        transition: transform 0.3s;
-    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h2 style="margin: 0; color: #0071e3; font-size: 48px; font-weight: 800;">500+</h2>
-        <p style="margin: 10px 0 0 0; color: #515154; font-size: 16px; font-weight: 500;">活动群人数</p>
-    </div>
+<div style="background: {bg_style}; padding: 30px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 20px; height: 100%;">
+<!-- 第一张卡片：30+ -->
+<div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+<h2 style="margin: 0; color: #0071e3; font-size: 48px; font-weight: 800;">30+</h2>
+<p style="margin: 10px 0 0 0; color: #515154; font-size: 16px; font-weight: 500;">协会成员</p>
+</div>
+<!-- 第二张卡片：500+ -->
+<div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+<h2 style="margin: 0; color: #0071e3; font-size: 48px; font-weight: 800;">500+</h2>
+<p style="margin: 10px 0 0 0; color: #515154; font-size: 16px; font-weight: 500;">活动群人数</p>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
