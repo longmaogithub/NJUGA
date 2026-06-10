@@ -4,8 +4,4 @@ python-dotenv
 sniffio
 httpx
 st-clickable-images
-pdfplumber
-langchain
-langchain-community
-chromadb
-sentence-transformers
+
