@@ -924,7 +924,7 @@ with tab4:
             st.markdown(user_input)
 
         with st.chat_message("assistant"):
-            stream_response = api_client.generate_stream_response(st.session_state.messages, use_rag=False)
+            stream_response = api_client.generate_stream_response(st.session_state.messages, use_rag=True)
 
             if isinstance(stream_response, str):
                 st.error(f"网络异常: {stream_response}")
