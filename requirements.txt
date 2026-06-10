@@ -4,9 +4,6 @@ python-dotenv
 sniffio
 httpx
 st-clickable-images
-streamlit
-zhipuai
-python-dotenv
 pdfplumber
 langchain
 langchain-community
